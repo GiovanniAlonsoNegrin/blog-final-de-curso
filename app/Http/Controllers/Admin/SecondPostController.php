@@ -10,7 +10,7 @@ class SecondPostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all()->paginate();
+        $posts = Post::all();
 
         return view('admin.posts.indextwo', compact('posts'));
     }
