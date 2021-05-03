@@ -15,11 +15,11 @@ class Post extends Model
 
     // One to many reverse
     public function user(){
-        return $this->blongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function category(){
-        return $this->blongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
     // Many to many
     public function tags(){

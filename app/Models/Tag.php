@@ -11,6 +11,13 @@ class Tag extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = ['name', 'slug', 'color'];
+
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
     //Relations
     //Many to many
     public function posts(){
