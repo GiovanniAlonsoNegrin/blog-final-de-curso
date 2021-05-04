@@ -10,7 +10,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th colspan="2"></th>
+                        <th>Posteado</th>
+                        <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,8 +19,15 @@
                         <tr>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->name }}</td>
+                            <td>
+                                @if ($post->status == 1)
+                                    Si
+                                @else
+                                    No
+                                @endif
+                            </td>
                             <td width="10px">
-                                <a class="btn btn-primary btn-sm" href="{{ route('admin.categories.edit', $post) }}">Editar</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('admin.posts.edit', $post) }}">Editar</a>
                             </td>
                             <td width="10px">
                                 {{-- <form action="{{ route('admin.categories.destroy', $category) }}" method="post">
@@ -47,7 +55,6 @@
     
 </div>
 
-
 {{-- Modal --}}
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -63,7 +70,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <form id="formDelete" action="{{ route('admin.posts.destroy', $posts) }}" method="post">
+                <form id="formDelete" action="{{ route('admin.posts.destroy', $post) }}" method="post">
                     @csrf
                     @method('delete')
 

@@ -14,6 +14,7 @@
             <strong>{{ session('info') }}</strong>
         </div>
     @endif
+    
     @livewire('admin.post-index')
 @stop
 

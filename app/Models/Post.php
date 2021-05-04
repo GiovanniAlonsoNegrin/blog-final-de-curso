@@ -13,7 +13,12 @@ class Post extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    //Relatios
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    //Relations
 
     // One to many reverse
     public function user(){
