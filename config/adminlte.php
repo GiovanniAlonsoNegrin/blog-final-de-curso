@@ -256,9 +256,9 @@ return [
         ],
         [
             'text'   => 'Posts',
-            'route'  => 'admin.allposts',
+            'route'  => 'admin.allposts.index',
             'icon'   => 'far fa-fw fa-bookmark',
-            'active' => ['admin/post*'],
+            'active' => ['admin/post/*'],
         ],
         ['header' => 'OPCIONES DE BLOG'],
         [

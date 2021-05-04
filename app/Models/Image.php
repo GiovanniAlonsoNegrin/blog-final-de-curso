@@ -11,6 +11,8 @@ class Image extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = ['url'];
+
     //Relations
     //Polimorphic relation
     public function imageable(){

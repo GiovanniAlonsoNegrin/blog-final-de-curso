@@ -5,7 +5,7 @@
 @section('content_header')
 
     <a class="btn btn-success btn-sm float-right" href="{{ route('admin.posts.create') }}">Crear post</a>
-    <h1>Lista de mis posts</h1>
+    <h1>Lista de todos los posts</h1>
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
             <strong>{{ session('info') }}</strong>
         </div>
     @endif
-    @livewire('admin.post-index')
+    @livewire('admin.second-post-index')
 @stop
 
 @section('js')
@@ -29,7 +29,7 @@
                 var title = button.data('title')
    
                 var modal = $(this)
-                modal.find('.modal-title').text('Vas a borrar el post: ' + title)
+                modal.find('.modal-title').text('Vas a borrar la categoría: ' + title)
             });
         };
     </script>

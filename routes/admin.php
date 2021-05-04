@@ -15,4 +15,4 @@ Route::resource('tags', TagController::class)->names('admin.tags');
 
 Route::resource('posts', PostController::class)->names('admin.posts');
 
-Route::get('post', [SecondPostController::class, 'index'])->name('admin.allposts');
+Route::resource('post', SecondPostController::class)->names('admin.allposts');
