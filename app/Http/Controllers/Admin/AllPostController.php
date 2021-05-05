@@ -10,7 +10,7 @@ class AllPostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:admin.allposts')->only('index');
+        $this->middleware('can:admin.allposts');
     }
 
     public function index()

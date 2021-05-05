@@ -10,8 +10,10 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    public function author(User $user, Post $post){
-        if ($user->id == $post->user_id OR $user->id == 1) { //Si el id del usuario es igual al id del usario que lo ha posteado.
+     public function author(User $user, ?Post $post){
+
+        if ($user->can('admin.posts.create') OR $user->can('admin.posts.edit') OR $user->can('admin.posts.destroy')){
+        // if ($user->id == $post->user_id OR $user->id == 1) { //Si el id del usuario es igual al id del usario que lo ha posteado.
             return true;
         } else {
             return false;
