@@ -256,7 +256,7 @@ return [
         ],
         [
             'text'   => 'Posts',
-            'route'  => 'admin.allposts.index',
+            'route'  => 'admin.allposts',
             'icon'   => 'far fa-fw fa-bookmark',
             'active' => ['admin/post/*'],
         ],

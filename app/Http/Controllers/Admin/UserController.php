@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Post;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class SecondPostController extends Controller
+class UserController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return view('admin.post.index');
+        return view('admin.users.index');
     }
 
     /**
@@ -20,7 +24,7 @@ class SecondPostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        //
     }
 
     /**
@@ -40,9 +44,9 @@ class SecondPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        return view('admin.post.show', compact('post'));
+        //
     }
 
     /**
@@ -51,9 +55,9 @@ class SecondPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        return view('admin.post.edit', compact('post'));
+        //
     }
 
     /**
@@ -63,7 +67,7 @@ class SecondPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -74,7 +78,7 @@ class SecondPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
         //
     }

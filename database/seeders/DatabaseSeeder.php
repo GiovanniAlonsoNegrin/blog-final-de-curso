@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('posts'); // This method delete the posts directory if exists.
         Storage::makeDirectory('posts'); //This method create a new directory with name posts.
 
+        $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         Category::factory(4)->create();
         Tag::factory(8)->create();
