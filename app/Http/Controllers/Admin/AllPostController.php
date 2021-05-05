@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class AllPostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.allposts')->only('index');
+    }
+
     public function index()
     {
         return view('admin.post.index');
