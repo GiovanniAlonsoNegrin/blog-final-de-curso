@@ -19,7 +19,7 @@
             <p class="h5">Nombre</p>
             <p class="form-control">{{ $user->name }}</p>
 
-            <h2 class="h5">Listado de roles</h2>
+            <h2 class="h5">Roles</h2>
             {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'put']) !!}
                 @foreach ($roles as $role)
                     <div>

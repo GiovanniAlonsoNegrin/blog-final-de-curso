@@ -51,4 +51,11 @@ class UserController extends Controller
         return redirect()->route('admin.users.edit', $user)->with('info', 'Se asignó el rol correctamente');
     }
 
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('info', 'El usuario se eliminó');
+    }
+
 }
