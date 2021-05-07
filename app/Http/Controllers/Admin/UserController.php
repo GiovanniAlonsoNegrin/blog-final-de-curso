@@ -13,7 +13,7 @@ class UserController extends Controller
     {
         $this->middleware('can:admin.users.index')->only('index');
         $this->middleware('can:admin.users.edit')->only('edit', 'update');
-        $this->middleware('admin.users.destroy')->only('destroy');
+        $this->middleware('can:admin.users.destroy')->only('destroy');
     }
     /**
      * Display a listing of the resource.
@@ -56,7 +56,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('admin.users.index')->with('info', 'El usuario se eliminó');
+        return redirect()->route('admin.users.index')->with('info', 'El usuario se eliminó con éxito');
     }
 
 }

@@ -29,7 +29,7 @@
                         </label>
                     </div>
                 @endforeach
-                {!! Form::submit('Asignar rol', ['class' => 'btn btn-success mt-2']) !!}
+                {!! Form::submit('Enviar', ['class' => 'btn btn-success mt-2']) !!}
             {!! Form::close() !!}
         </div>
     </div>

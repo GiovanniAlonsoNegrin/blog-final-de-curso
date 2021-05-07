@@ -23,14 +23,7 @@ class UsersIndex extends Component
     public function render()
     {
         $roles = Role::all();
-        // $user = User::whereHasMorph(
-        //     'Roleable',
-        //     [Role::class],
-        //     function (Builder $query) {
-        //         $query->where('name');
-        //     }
-        // )->get();
-
+ 
         $users = User::where('name', 'LIKE', '%' . $this->search . '%')
                      ->orWhere('email', 'LIKE', '%' . $this->search . '%')->paginate();
 

@@ -22,13 +22,14 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->email}}</td>
-                                {{-- @foreach ($roles as $rol)
-                                
-                                    <td>{{ $user->rol->name }}</td>
-                            
-                                    <td>{{ $rol->name }}</td>
-                                @endforeach --}}
+                                <td>{{ $user->email}}</td>    
+                                <td>
+                                    @forelse ($user->roles as $role)
+                                        {{ $role->name }}
+                                    @empty
+                                        Sin rol
+                                    @endforelse
+                                </td>
                                 <td width="10px">
                                     <a class="btn btn-primary btn-sm" href="{{ route('admin.users.edit', $user) }}">Rol</a>
                                 </td>
