@@ -17,12 +17,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email}}</td>
-                                <td></td>
+                                {{-- @foreach ($roles as $rol)
+                                
+                                    <td>{{ $user->rol->name }}</td>
+                            
+                                    <td>{{ $rol->name }}</td>
+                                @endforeach --}}
                                 <td width="10px">
                                     <a class="btn btn-primary btn-sm" href="{{ route('admin.users.edit', $user) }}">Rol</a>
                                 </td>
