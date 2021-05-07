@@ -1,15 +1,36 @@
 <x-app-layout>
 
-    <div class="max-w-5xl mx-auto px-2 sm:px-6 lg:px-8 py-8">
-        <h1 class="uppercase text-center text-3xl font-bold mb-2">Categoría: {{ $category->name }}</h1>
+    <div class="container my-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">Categoría: {{ $category->name }}</h1>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2">
+                
+                @foreach ($posts as $post)
+                    <x-card-post :post="$post" />
+                    
+                @endforeach
 
-        @foreach ($posts as $post)
-            <x-card-post :post="$post" />
-        @endforeach
-
-        <div class="mt-4">
-            {{ $posts->links() }}
+                <div class="mt-4">
+                    {{ $posts->links() }}
+                </div>
+            </div>
+            <aside>
+                <h1 class="text-2xl font-bold text-gray-600 mb-4">Otras categorías</h1>
+                
+                <ul>
+                    @foreach ($categories as $category)
+                        <li class="mb-4">
+                            <a class="flex" href="{{ route('posts.category', $category) }}">
+                                <span class="ml-2 text-gray-600 text-4xl hover:bg-blue-400 rounded-xl">{{ $category->name }}</span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </aside>
         </div>
-    </div>
-    
+        
+    </div>  
+
+    <script src="https://kit.fontawesome.com/e6dfba9ce5.js" crossorigin="anonymous"></script>
+
 </x-app-layout>
