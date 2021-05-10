@@ -9,8 +9,8 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('slug','Slug', ['hidden']) !!}
-    {!! Form::text('slug', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el slug del post', 'readonly', 'hidden']) !!}
+    {!! Form::label('slug','Slug') !!}
+    {!! Form::text('slug', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el slug del post']) !!}
 </div>
 
 <div class="form-group">

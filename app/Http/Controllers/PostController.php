@@ -30,7 +30,8 @@ class PostController extends Controller
     }
 
     public function category(Category $category){
-        $categories = Category::all();
+        $categories = Category::all()
+                              ->where('id', '!=', $category->id);
 
         $posts = Post::where('category_id', $category->id)
                     ->where('status', 2)
@@ -41,7 +42,8 @@ class PostController extends Controller
     }
 
     public function tag(Tag $tag){
-        $tags = Tag::all();
+        $tags = Tag::all()
+                   ->where('id', '!=', $tag->id);
         
         $posts = $tag->posts()->where('status', 2)->latest('id')->paginate(6);
 

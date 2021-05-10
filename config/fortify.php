@@ -1,7 +1,8 @@
 <?php
 
-use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
+// use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 
 return [
 
@@ -62,7 +63,18 @@ return [
     */
 
     'home' => RouteServiceProvider::HOME,
-
+    // 'home' => function(){
+    //     //if you want to go to a specific route
+    //     return route('posts.index');
+      
+    //     //or if you have a bunch of redirection options
+    //     if (Auth::user()->Role::name('Admin')) {
+    //        return route('admin.index');
+    //     }
+    //     else{
+    //        return route('guest.index');
+    //     }
+    // },
     /*
     |--------------------------------------------------------------------------
     | Fortify Routes Prefix / Subdomain
