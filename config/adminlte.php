@@ -241,6 +241,12 @@ return [
             'can'   => 'admin.home',
         ],
         [
+            'text'  => 'Web principal',
+            'route' => 'posts.index',
+            'icon'  => 'fas fa-pager fa-fw',
+            'can'   => 'admin.home',
+        ],
+        [
             'text'  => 'Usuarios',
             'route' => 'admin.users.index',
             'icon'  => 'fas fa-users fa-fw',
@@ -269,9 +275,16 @@ return [
         [
             'text'   => 'Posts',
             'route'  => 'admin.allposts',
-            'icon'   => 'far fa-fw fa-bookmark',
+            'icon'   => 'far fa-fw fa-sticky-note',
             'active' => ['admin/post/*'],
             'can'   => 'admin.allposts',
+        ],
+        [
+            'text'   => 'Comentarios',
+            'route'  => 'admin.comments.index',
+            'icon'   => 'far fa-fw fa-comments',
+            'active' => ['admin/comments/*'],
+            // 'can'   => 'admin.allposts',
         ],
         ['header' => 'OPCIONES DE BLOG'],
         [

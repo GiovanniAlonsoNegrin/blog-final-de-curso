@@ -11,7 +11,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Posteado</th>
-                        <th colspan="2">Acciones</th>
+                        <th colspan="3" class="text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +25,9 @@
                                 @else
                                     SI
                                 @endif
+                            </td>
+                            <td width="10px">
+                                <a class="btn btn-success btn-sm" href="{{ route('admin.posts.show', $post) }}">Comentarios</a>
                             </td>
                             <td width="10px">
                                 <a class="btn btn-primary btn-sm" href="{{ route('admin.posts.edit', $post) }}">Editar</a>

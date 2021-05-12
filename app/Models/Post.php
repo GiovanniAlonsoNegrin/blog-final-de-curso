@@ -28,6 +28,10 @@ class Post extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
     // Many to many
     public function tags(){
         return $this->belongsToMany(Tag::class);
@@ -36,4 +40,4 @@ class Post extends Model
     public function image(){
         return $this->morphOne(Image::class, 'imageable');
     }
-}
+} 

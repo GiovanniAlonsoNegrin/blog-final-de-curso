@@ -30,7 +30,7 @@
                             <div class="w-full h-full px-8 flex flex-col justify-center">
                                 <div>
                                     @foreach ($post->tags as $tag)
-                                        <a href="{{ route('posts.tag', $tag) }}" class="inline-block px-3 h-6 bg-{{ $tag->color }}-600 text-white rounded-full">{{ $tag->name }}</a>
+                                        <a href="{{ route('posts.tag', $tag) }}" class="inline-block px-3 h-6 bg-{{ $tag->color }}-600 text-white rounded-full relative">{{ $tag->name }}</a>
                                     @endforeach
                                 </div>
                                 <div>
@@ -39,7 +39,7 @@
                                             {{ $post->name }}
                                         </a>
                                     </h1>
-                                    <ul>
+                                    <ul class="relative">
                                         <i class="fas fa-star text-yellow-500"></i>
                                         <i class="far fa-star text-yellow-500"></i>
                                         <i class="far fa-star text-yellow-500"></i>
@@ -47,6 +47,7 @@
                                         <i class="far fa-star text-yellow-500"></i>
                                         <i class="far fa-star text-yellow-500"></i>
                                     </ul>
+                                    <small class="text-white relative">{{ $post->created_at->format('d-m-Y') }}</small>
                                 </div> 
                             </div>
                         </article>    
@@ -60,29 +61,28 @@
         </div>
     </div>
     
-
-
-
     <script src="https://kit.fontawesome.com/e6dfba9ce5.js" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         window.onload = function () {
-            $('#myArticle').mouseover(function () { 
-                $('#myArticle').addClass("overlay");
+
+            $('article').mouseover(function () { 
+                $( this ).addClass( "overlay" ); 
             }); 
-            $('#myArticle').mouseout(function () { 
-                $('#myArticle').removeClass("overlay");
-            }); 
+
+            $('article').mouseout(function () { 
+                $( this ).removeClass( "overlay" );  
+            });
     
-            // document.getElementById("myArticle").addEventListener("mouseover", background);
-            // document.getElementById("myArticle").addEventListener("mouseout", outBackground);
+            // document.getElementByTagName("article").addEventListener("mouseover", background);
+            // document.getElementByTagName("article").addEventListener("mouseout", outBackground);
 
             // function background() {
-            //     document.getElementById("myArticle").classList.add("overlay");
+            //     document.getElementByTagName("article").classList.add("overlay");
             // }
 
             // function outBackground() {
-            //     document.getElementById("myArticle").classList.remove("overlay"); 
+            //     document.getElementByTagName("article").classList.remove("overlay"); 
             // }
         };
     </script>

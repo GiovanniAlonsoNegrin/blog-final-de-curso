@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -19,6 +18,12 @@ class PostController extends Controller
 
         $this->authorize('published', $post);
 
+        // $comments = Comment::find('post_id', $post->id)  
+        //                     ->get();
+
+        // $users = User::where('id', $comments->id)
+                    // ->;
+
         $similars = Post::where('category_id', $post->category_id)
                        ->where('status', 2)
                        ->where('id', '!=', $post->id)
@@ -30,8 +35,8 @@ class PostController extends Controller
     }
 
     public function category(Category $category){
-        $categories = Category::all()
-                              ->where('id', '!=', $category->id);
+        $categories = Category::where('id', '!=', $category->id)
+                              ->get();
 
         $posts = Post::where('category_id', $category->id)
                     ->where('status', 2)
@@ -42,8 +47,8 @@ class PostController extends Controller
     }
 
     public function tag(Tag $tag){
-        $tags = Tag::all()
-                   ->where('id', '!=', $tag->id);
+        $tags = Tag::where('id', '!=', $tag->id)
+                   ->get();
         
         $posts = $tag->posts()->where('status', 2)->latest('id')->paginate(6);
 
