@@ -14,40 +14,48 @@
     @endif
     
     <div class="card">
-        @if ($comments->count())
-        
-            <div class="card-body">
 
-                @foreach ($comments as $comment)    
-                    <div class="form-group">
+        <div class="card-body">
 
-                        <p>Post: {{ $comment->post_id }} | Autor: {{ $comment->user->name }} | Fecha de creación: {{ $comment->created_at->format('d-m-Y H:i:s') }}</p>
+            @forelse ($comments as $comment)
 
-                        {!! Form::textarea('message', $comment->message, ['class' => 'form-control mb-2', 'rows' => '3']) !!}
+                <div class="form-group">
 
-                        <div class="row">
-                            <div class="ml-2">
-                                <a class="btn btn-primary mb-3" href="">Validar</a>
-                            </div>
-                            <div class="ml-1">
-                                <form action="{{ route('admin.comments.destroy', $comment) }}" method="post">
-                                    @csrf
-                                    @method('delete')
+                    <p>Post: {{ $comment->post_id }} | Autor: {{ $comment->user->name }} | Fecha de creación: {{ $comment->created_at->format('d-m-Y H:i:s') }}</p>
 
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
+                    <div class="row">
+                        <div class="ml-2">
+
+                            {!! Form::model($comment, ['route' => ['admin.comments.update', $comment], 'method' => 'put']) !!}
+
+                                {!! Form::label('message','Comentario') !!}
+                                {!! Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el comentario', 'rows' => '3']) !!}
+
+                                {!! Form::hidden('status', '2') !!}
+
+                                @error('message')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+
+                                {!! Form::submit('Validar', ['class' => 'btn btn-primary mt-2 mr-1 float-left']) !!}
+
+                            {!! Form::close() !!}
+
+                            {!! Form::model($comment, ['route' => ['admin.comments.destroy', $comment], 'method' => 'delete', 'class' => 'form-inline']) !!}
+
+                                {!! Form::submit('Eliminar', ['class' => 'btn btn-danger mt-2']) !!}
+
+                            {!! Form::close() !!}
+
                         </div>
-   
                     </div>
-                @endforeach
+                </div>
 
-            </div>
-        @else
-            <div class="card-body">
-                <strong>No hay ningún registro...</strong>
-            </div> 
-        @endif
+            @empty
+                <strong>No hay ningún comentario pendiente de moderación...</strong>
+            @endforelse
+
+        </div>
         
     </div>
 @stop

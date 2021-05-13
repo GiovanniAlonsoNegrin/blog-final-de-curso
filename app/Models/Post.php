@@ -29,6 +29,7 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    //One to many    
     public function comments(){
         return $this->hasMany(Comment::class);
     }

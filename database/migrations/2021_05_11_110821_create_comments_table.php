@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
 
             $table->text('message')->nullable();
-            $table->enum('status', [1, 2])->default(2);
+            $table->enum('status', [1, 2, 3])->default(1);
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_id');

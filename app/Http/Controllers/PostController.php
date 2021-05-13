@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\Category;
 
 class PostController extends Controller
@@ -17,10 +18,11 @@ class PostController extends Controller
     public function show(Post $post){
 
         $this->authorize('published', $post);
-
+        
+        // dd($post->comments);
         // $comments = Comment::find('post_id', $post->id)  
         //                     ->get();
-
+        // $this->authorize('commentPublished', $comments);
         // $users = User::where('id', $comments->id)
                     // ->;
 

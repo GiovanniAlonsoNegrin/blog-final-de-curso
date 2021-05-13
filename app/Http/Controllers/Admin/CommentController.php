@@ -15,7 +15,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::all();
+        $comments = Comment::where('status' , '1')
+                           ->get();
 
         return view('admin.comments.index', compact('comments'));
     }
@@ -81,7 +82,7 @@ class CommentController extends Controller
 
         $comment->update($request->all());
 
-        return redirect()->route('admin.comments.edit', $comment)->with('info', 'El comentario se actualizó con exito');
+        return back()->with('info', 'El comentario se actualizó con exito');
     }
 
     /**

@@ -50,26 +50,56 @@
                 <div class="relative w-full mb-3">
                     @forelse ($post->comments as $comment)
 
-                        <small>{{ $comment->user->name }} {{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
-                        {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
+                        @if (Auth::guest())
+                            @if ($comment->status == 2)
+                            <small>{{ $comment->user->name }} {{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
+                            {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
+                        @endif
+                        @else
+                            @if ($comment->status == 1 AND $comment->user_id == auth()->user()->id)
+                                <small>{{ $comment->user->name }} {{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
+                                {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
+                            @endif
+                            @if ($comment->status == 2 AND $comment->user_id == auth()->user()->id)
+                                <small>{{ $comment->user->name }} {{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
+                                <div class="mb-3">
+                                    <div class="inline-block">
+                                        <a class="fas fa-edit text-green-500" href="{{ route('post.comment.edit', $comment) }}"></a>
+                                    </div>
+                                    <div class="inline-block">
+
+                                        <form action="{{ route('post.comment.destroy', $comment) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+
+                                            <button type="submit" class="fas fa-trash-alt text-red-500"></button>
+                                        
+                                        </form>
+                                        
+                                        {{-- {!! Form::model($comment, ['route' => ['post.comment.destroy', $comment], 'autocomplete' => 'off', 'files' => true, 'method' => 'delete']) !!}
+
+                                        
+                                            {!! Form::submit('Eliminar', ['class' => 'fas fa-trash-alt text-red-500']) !!}
+                                            
+                                            
+
+                                        {!! Form::close() !!} --}}
+                                    </div>
+                                </div> 
+                                <textarea name="message" id="message" cols="80" rows="4" class="border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly">
+
+                                    <p>Hola pepito</p>
+                                </textarea>
+
+                                {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
+                            @endif
+                        @endif
 
                         @if (Auth::guest())
 
                         @else
                             @if (auth()->user()->id == $comment->user_id)
-                                <div class="mb-3">
-                                    <div class="inline-block">
-
-                                        <a class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none mt-1" href="{{ route('post.comment.edit', $comment) }}">Actualizar</a>
-                                    </div>
-                                    <div class="inline-block">
-                                        {!! Form::model($comment, ['route' => ['post.comment.destroy', $comment], 'autocomplete' => 'off', 'files' => true, 'method' => 'delete']) !!}
-
-                                            {!! Form::submit('Eliminar', ['class' => 'inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none mt-1']) !!}
-
-                                        {!! Form::close() !!}
-                                    </div>
-                                </div> 
+                                
                             @endif   
                         @endif
                     @empty
