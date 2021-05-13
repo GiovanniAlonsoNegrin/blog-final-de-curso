@@ -15,41 +15,33 @@
     
     <div class="card">
         @if ($comments->count())
+        
             <div class="card-body">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Post</th>
-                            <th>Contenido</th>
-                            <th colspan="2">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($comments as $comment)
-                            <tr>
-                                <td>{{ $comment->id }}</td>
-                                <td>{{ $comment->post_id }}</td>
-                                <td>{{ $comment->message }}</td>
-                                <td width="10px">
-                                    @can('admin.categories.edit')
-                                        <a class="btn btn-primary btn-sm" href="{{ route('admin.comments.edit', $comment) }}">Editar</a>
-                                    @endcan
-                                </td>
-                                <td width="10px">
-                                    @can('admin.categories.destroy', Model::class)
-                                        <form action="{{ route('admin.comments.destroy', $comment) }}" method="post">
-                                            @csrf
-                                            @method('delete')
 
-                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        </form>
-                                    @endcan
-                                </td>
-                            </tr>   
-                        @endforeach
-                    </tbody>
-                </table>
+                @foreach ($comments as $comment)    
+                    <div class="form-group">
+
+                        <p>Post: {{ $comment->post_id }} | Autor: {{ $comment->user->name }} | Fecha de creación: {{ $comment->created_at->format('d-m-Y H:i:s') }}</p>
+
+                        {!! Form::textarea('message', $comment->message, ['class' => 'form-control mb-2', 'rows' => '3']) !!}
+
+                        <div class="row">
+                            <div class="ml-2">
+                                <a class="btn btn-primary mb-3" href="">Validar</a>
+                            </div>
+                            <div class="ml-1">
+                                <form action="{{ route('admin.comments.destroy', $comment) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </div>
+                        </div>
+   
+                    </div>
+                @endforeach
+
             </div>
         @else
             <div class="card-body">

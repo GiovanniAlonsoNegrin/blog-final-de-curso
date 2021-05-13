@@ -16,22 +16,22 @@
 
     <div class="card">
         <div class="card-body">
-            {{-- Laravel collective --}}
-            {!! Form::model($comment, ['route' => ['admin.comments.update', $comment], 'method' => 'put']) !!}
+            <div class="form-group">
+                {{-- Laravel collective --}}
+                {!! Form::model($comment, ['route' => ['admin.comments.update', $comment], 'method' => 'put']) !!}
 
-                <div class="form-group">
+
                     {!! Form::label('message','Comentario') !!}
-                    {!! Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el comentario']) !!}
+                    {!! Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el comentario', 'rows' => '3']) !!}
 
                     @error('message')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
 
-                </div>
+                    {!! Form::submit('Actualizar comentario', ['class' => 'btn btn-success mt-2']) !!}
 
-                {!! Form::submit('Actualizar comentario', ['class' => 'btn btn-success']) !!}
-
-            {!! Form::close() !!}
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
 @stop

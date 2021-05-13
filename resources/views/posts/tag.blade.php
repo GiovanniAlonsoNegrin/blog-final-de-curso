@@ -17,10 +17,14 @@
                 <h1 class="text-2xl font-bold text-gray-600 mb-4">Otras etiquetas</h1>
                 
                 <ul>
-                    @foreach ($tags as $tag)
+                    @foreach ($tags as $myTag)
                         <li class="mb-4">
-                            <a class="flex" href="{{ route('posts.tag', $tag) }}">
-                                <span class="ml-2 text-gray-600 text-4xl hover:bg-{{ $tag->color }}-300 rounded-xl">{{ $tag->name }}</span>
+                            <a class="flex" href="{{ route('posts.tag', $myTag) }}">
+                                @if ($myTag == $tag )
+                                    <span class="ml-2 text-gray-600 text-4xl bg-{{ $myTag->color }}-300 rounded-xl">{{ $myTag->name }}</span>
+                                @else
+                                    <span class="ml-2 text-gray-600 text-4xl hover:bg-{{ $myTag->color }}-300 rounded-xl">{{ $myTag->name }}</span>
+                                @endif
                             </a>
                         </li>
                     @endforeach

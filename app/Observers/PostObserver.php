@@ -26,10 +26,10 @@ class PostObserver
      * @param  \App\Models\Post  $post
      * @return void
      */
-    public function deleting(Post $post) //Se activa justo antes de eliminar el post.
-    {
-        if ($post->image) {
-            Storage::delete($post->image->url); //Cada vea que se elimine un post se elimina su imagen.
-        }
-    }
+    // public function deleting(Post $post) //Se activa justo antes de eliminar el post.
+    // {
+    //     if ($post->image) {
+    //         Storage::delete($post->image->url); //Cada vea que se elimine un post se elimina su imagen.
+    //     }
+    // }
 }

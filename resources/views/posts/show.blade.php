@@ -1,5 +1,5 @@
 <x-app-layout>
-    
+
     <div class="container my-8">
         <h1 class="text-4xl font-bold text-gray-600">{{ $post->name }}</h1>
         
@@ -36,31 +36,22 @@
 
                             {!! Form::label('message', 'Comentarios', ['class' => 'block uppercase text-gray-700 text-s font-bold mb-2 mt-2']) !!}
                             
-                            {!! Form::textarea('message', '', ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full resize-none', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required']) !!}
+                            {!! Form::textarea('message', '', ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required']) !!}
                             
                             {!! Form::hidden('user_id', auth()->user()->id) !!}
                             {!! Form::hidden('post_id', $post->id) !!}
 
-                            {!! Form::submit('Comentar', ['class' => 'inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-green-500 rounded shadow ripple hover:shadow-lg hover:bg-green-600 focus:outline-none']) !!}
+                            {!! Form::submit('Comentar', ['class' => 'inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-green-500 rounded shadow ripple hover:shadow-lg hover:bg-green-600 focus:outline-none mt-1']) !!}
 
                         {!! Form::close() !!}
+
                     @endif
                 </div>
                 <div class="relative w-full mb-3">
                     @forelse ($post->comments as $comment)
 
-                        @if (Auth::guest())
-                            <small>{{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
-                            {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full resize-none', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
-                        @else
-                            @if (auth()->user()->id == $comment->user_id)
-                                <small>{{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
-                                {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full resize-none', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required']) !!}
-                            @else
-                                <small>{{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
-                                {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full resize-none', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
-                            @endif
-                        @endif
+                        <small>{{ $comment->user->name }} {{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
+                        {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
 
                         @if (Auth::guest())
 
@@ -68,16 +59,13 @@
                             @if (auth()->user()->id == $comment->user_id)
                                 <div class="mb-3">
                                     <div class="inline-block">
-                                        {!! Form::model($comment, ['route' => ['post.comment.update', $comment], 'autocomplete' => 'off', 'files' => true, 'method' => 'put']) !!}
 
-                                            {!! Form::submit('Actualizar', ['class' => 'inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none']) !!}
-
-                                        {!! Form::close() !!}
+                                        <a class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none mt-1" href="{{ route('post.comment.edit', $comment) }}">Actualizar</a>
                                     </div>
                                     <div class="inline-block">
                                         {!! Form::model($comment, ['route' => ['post.comment.destroy', $comment], 'autocomplete' => 'off', 'files' => true, 'method' => 'delete']) !!}
 
-                                            {!! Form::submit('Eliminar', ['class' => 'inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none']) !!}
+                                            {!! Form::submit('Eliminar', ['class' => 'inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none mt-1']) !!}
 
                                         {!! Form::close() !!}
                                     </div>

@@ -6,8 +6,7 @@
             <div class="lg:col-span-2">
                 
                 @foreach ($posts as $post)
-                    <x-card-post :post="$post" />
-                    
+                    <x-card-post :post="$post" />  
                 @endforeach
 
                 <div class="mt-4">
@@ -21,7 +20,12 @@
                     @foreach ($categories as $category)
                         <li class="mb-4">
                             <a class="flex" href="{{ route('posts.category', $category) }}">
-                                <span class="ml-2 text-gray-600 text-4xl hover:bg-blue-400 rounded-xl">{{ $category->name }}</span>
+                                @if ($post->category == $category)
+                                    <span class="ml-2 text-gray-600 text-4xl bg-blue-400 rounded-xl">{{ $category->name }}</span>
+                                @else
+                                    <span class="ml-2 text-gray-600 text-4xl hover:bg-blue-400 rounded-xl">{{ $category->name }}</span>
+                                @endif
+                                
                             </a>
                         </li>
                     @endforeach

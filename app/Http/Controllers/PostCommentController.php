@@ -26,6 +26,17 @@ class PostCommentController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Comment $comment)
+    {
+        return view('posts.commentsEdit', compact('comment'));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -40,7 +51,7 @@ class PostCommentController extends Controller
 
         $comment->update($request->all());
 
-        return back();
+        return back()->with('info', 'Comentario actualizado con éxito');
     }
 
     /**
