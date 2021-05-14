@@ -284,9 +284,12 @@ return [
             'route'  => 'admin.comments.index',
             'icon'   => 'far fa-fw fa-comments',
             'active' => ['admin/comments/*'],
-            // 'can'   => 'admin.allposts',
+            'can'   => 'admin.comments.index',
         ],
-        ['header' => 'OPCIONES DE BLOG'],
+        [
+            'header' => 'OPCIONES DE BLOG',
+            'can'   => 'admin.posts.index',
+        ],
         [
             'text'   => 'Mi lista de posts',
             'route'  => 'admin.posts.index',

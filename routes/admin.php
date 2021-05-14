@@ -24,4 +24,4 @@ Route::resource('posts', PostController::class)->names('admin.posts');
 
 Route::get('post', [AllPostController::class, 'index'])->name('admin.allposts');
 
-Route::resource('comment', CommentController::class)->names('admin.comments');
+Route::resource('comment', CommentController::class)->except('create','store','show')->names('admin.comments');

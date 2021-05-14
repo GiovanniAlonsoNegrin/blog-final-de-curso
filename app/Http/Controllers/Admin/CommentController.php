@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.posts.index')->only('index');
+        $this->middleware('can:admin.posts.edit')->only('edit', 'update');
+        $this->middleware('can:admin.posts.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,41 +25,6 @@ class CommentController extends Controller
                            ->get();
 
         return view('admin.comments.index', compact('comments'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
-    {
-        $comments = Comment::where('post_id', $comment->post_id)
-                           ->get();
-
-        return view('admin.comments.show', compact('comments'));
     }
 
     /**

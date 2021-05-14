@@ -25,6 +25,8 @@ class PostController extends Controller
         // $this->authorize('commentPublished', $comments);
         // $users = User::where('id', $comments->id)
                     // ->;
+        // $post->count += 1;
+        // $post->save(); mediante estas dos líneas de código se suma una visita.
 
         $similars = Post::where('category_id', $post->category_id)
                        ->where('status', 2)

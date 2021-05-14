@@ -1,27 +1,5 @@
 <x-app-layout>
 
-    <style>
-
-        /* .image{
-            background-image: url(https://www.teahub.io/photos/full/28-288489_fondos-de-pantalla-4k.jpg);
-            background-repeat: no-repeat;
-            background-size: 100vw;
-            height: 100vh;
-        }  */
-    
-        .overlay::before{
-            content: ''; 
-            position: absolute; 
-            background-color:#000; 
-            opacity: 0.6; 
-            top:0; 
-            right:0; 
-            left:0; 
-            bottom:0; 
-            border-radius: 7px;
-        }   
-    </style>
-
     <div class="image">
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="container py-8">
@@ -61,21 +39,19 @@
             </div>
         </div>
     </div>
-    
-    <script src="https://kit.fontawesome.com/e6dfba9ce5.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         window.onload = function () {
 
             $('article').mouseover(function () { 
                 $( this ).addClass( "overlay" ); 
+                $( this ).addClass( "myShadow" ); 
             }); 
 
             $('article').mouseout(function () { 
                 $( this ).removeClass( "overlay" );  
+                $( this ).removeClass( "myShadow" );  
             });
 
         };
-    </script>
-
+    </script> 
 </x-app-layout>

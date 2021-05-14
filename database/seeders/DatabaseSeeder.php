@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Tag;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Database\Seeder;
 

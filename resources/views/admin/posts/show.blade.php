@@ -23,14 +23,18 @@
                         <textarea class="form-control mb-2" name="message" id="message" rows="3">{{ $comment->message }}</textarea>
                         <div class="row">
                             <div class="ml-2">
-                                <a class="btn btn-primary mb-3" href="{{ route('admin.comments.edit', $comment) }}">Actualizar</a>
+                                @can('admin.comments.edit')
+                                    <a class="btn btn-primary mb-3" href="{{ route('admin.comments.edit', $comment) }}">Editar</a>
+                                @endcan
                             </div>
                             <div class="ml-1">
                                 <form action="{{ route('admin.comments.destroy', $comment) }}" method="post">
                                     @csrf
                                     @method('delete')
-
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    
+                                    @can('admin.comments.destroy')
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    @endcan
                                 </form>
                             </div>
                         </div>

@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Image;
 use App\Models\Post;
+use App\Models\Image;
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -17,6 +18,7 @@ class PostSeeder extends Seeder
     {
         $posts = Post::factory(300)->create();
 
+        $comments = Comment::factory(10)->create();
 
         foreach ($posts as $post) {
             Image::factory(1)->create([

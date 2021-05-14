@@ -13,16 +13,68 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+        <style>
+            body {
+                background-image: url(https://www.teahub.io/photos/full/28-288489_fondos-de-pantalla-4k.jpg);
+                background-size: 100vw;
+                height: 100vh;
+            }
+
+            .myShadow {
+            -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+            box-shadow: 5px 5px 15px 5px #000000;
+            }
+
+            .overlay::before{
+                content: ''; 
+                position: absolute; 
+                background-color:#000; 
+                opacity: 0.6; 
+                top:0; 
+                right:0; 
+                left:0; 
+                bottom:0; 
+                border-radius: 7px;
+            }   
+
+            .comentarioPost{
+                position: relative;
+            }
+            .comentarioPost:hover .accionesPost{
+                opacity: 1;
+                pointer-events: initial;
+            }
+            .accionesPost{
+                position: absolute;
+                right: 0;
+                top: 0;
+                background: none;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: .3s all;
+            }
+            .accionesPost > *{
+                margin: 0 5px;
+            }
+        </style>
+
         @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        <script src="https://kit.fontawesome.com/e6dfba9ce5.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen">
             @livewire('navigation')
 
             <!-- Page Content -->

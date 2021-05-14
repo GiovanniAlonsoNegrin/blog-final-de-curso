@@ -27,11 +27,13 @@
                                 @endif
                             </td>
                             <td width="10px">
-                                @if ($post->comments->count())
-                                    <a class="btn btn-success btn-sm" href="{{ route('admin.posts.show', $post) }}">Comentarios</a>
-                                @else
-                                    <a class="btn btn-secondary btn-sm" href="#">Comentarios</a>
-                                @endif
+                                @can('admin.comments.posts')
+                                    @if ($post->comments->count())
+                                        <a class="btn btn-success btn-sm" href="{{ route('admin.posts.show', $post) }}">Comentarios</a>
+                                    @else
+                                        <a class="btn btn-secondary btn-sm" style="cursor: default;" href="#">Comentarios</a>
+                                    @endif
+                                @endcan
                             </td>
                             <td width="10px">
                                 <a class="btn btn-primary btn-sm" href="{{ route('admin.posts.edit', $post) }}">Editar</a>

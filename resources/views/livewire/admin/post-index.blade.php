@@ -30,7 +30,7 @@
                                 @if ($post->comments->count())
                                     <a class="btn btn-success btn-sm" href="{{ route('admin.posts.show', $post) }}">Comentarios</a>
                                 @else
-                                    <a class="btn btn-secondary btn-sm" href="#">Comentarios</a>
+                                    <a class="btn btn-secondary btn-sm" style="cursor: default;" href="#">Comentarios</a>
                                 @endif
                             </td>
                             <td width="10px">
