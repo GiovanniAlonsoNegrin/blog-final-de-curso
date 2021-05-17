@@ -3,6 +3,8 @@
 @section('title', 'Full Games')
 
 @section('content_header')
+    {{-- {!! Form::submit('Validar todo', ['class' => 'btn btn-success btn-sm float-right']) !!}  --}}
+    <button id="allValidate" class="btn btn-success btn-sm float-right">Validar todo</button>
     <h1>Lista de comentarios pendientes de moderación</h1>
 @stop
 
@@ -37,33 +39,40 @@
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                                 @can('admin.comments.validate')
-                                    {!! Form::submit('Validar', ['class' => 'btn btn-success mt-2 mr-1 float-left']) !!}
+                                    {!! Form::submit('Validar', ['class' => 'btn btn-success btn-sm mt-2 mr-1 float-left']) !!}
                                 @endcan
                             {!! Form::close() !!}
                             
                             {!! Form::model($comment, ['route' => ['admin.comments.destroy', $comment], 'method' => 'delete', 'class' => 'form-inline']) !!}
 
                                 @can('admin.comments.destroy')
-                                    {!! Form::submit('Eliminar', ['class' => 'btn btn-danger mt-2']) !!}
+                                    {!! Form::submit('Eliminar', ['class' => 'btn btn-danger btn-sm mt-2']) !!}
                                 @endcan    
 
                                 @can('admin.comments.edit')
-                                    <a class="btn btn-primary mt-2 ml-1" href="{{ route('admin.comments.edit', $comment) }}">Editar</a>
+                                    <a class="btn btn-primary btn-sm mt-2 ml-1" href="{{ route('admin.comments.edit', $comment) }}">Editar</a>
                                 @endcan
 
                             {!! Form::close() !!}
-
-
 
                         </div>
                     </div>
                 </div>
 
             @empty
-                <strong>No hay ningún comentario pendiente de moderación...</strong>
+                <strong>No existen comentarios pendientes de moderación...</strong>
             @endforelse
 
         </div>
         
     </div>
+
+    <script>
+        window.onload = function () {
+            $('#allValidate').click(function () { 
+                $('form').submit();
+            });
+        }
+    </script>
+
 @stop

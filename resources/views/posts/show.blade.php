@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="container my-8 bg-gray-100 h-full py-4 px-4 mt-0 mb-0">
+    <div class="container my-8 bg-gray-100 h-full py-4 px-4 rounded-lg">
         <h1 class="text-4xl font-bold text-gray-600">{{ $post->name }}</h1>
         
         <div class="text-lg text-gray-500 mb-2 text-justify">
@@ -18,13 +18,20 @@
                 <small>{{ $post->created_at->format('d-m-Y, H:i:s') }}</small>
                 <div class="text-base text-gray-500 mt-4">
                     <ul>
-                        <i class="fas fa-star text-yellow-500 text-3xl"></i>
-                        <i class="far fa-star text-yellow-500 text-3xl"></i>
-                        <i class="far fa-star text-yellow-500 text-3xl"></i>
-                        <i class="far fa-star text-yellow-500 text-3xl"></i>
-                        <i class="far fa-star text-yellow-500 text-3xl"></i>
-                        <i class="far fa-star text-yellow-500 text-3xl"></i>
+                        <i id="star1" data-position="1" class="far fa-star text-yellow-500 text-3xl"></i>
+                        <i id="star2" data-position="2" class="far fa-star text-yellow-500 text-3xl"></i>
+                        <i id="star3" data-position="3" class="far fa-star text-yellow-500 text-3xl"></i>
+                        <i id="star4" data-position="4" class="far fa-star text-yellow-500 text-3xl"></i>
+                        <i id="star5" data-position="5" class="far fa-star text-yellow-500 text-3xl"></i>
+                        <i id="star6" data-position="6" class="far fa-star text-yellow-500 text-3xl"></i>
                     </ul>
+
+                    {!! Form::open(['route' => 'post.comment.store', 'autocomplete' => 'off', 'files' => true]) !!}
+
+                        {!! Form::hidden('point', '') !!}
+
+                    {!! Form::close() !!}
+
                     <div class="text-justify">
                         {!! $post->body !!}
                     </div>
@@ -60,7 +67,24 @@
                         @else
                             @if ($comment->status == 1 AND $comment->user_id == auth()->user()->id)
                                 <small>{{ $comment->user->name }} {{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
-                                {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
+                                <div class="comentarioPost">
+                                    <small class="text-red-500 messageComment">Pendiente de moderación</small> 
+                                    <div class="accionesPost">
+                                        {{-- <a id="myButtonOpen" class="fas fa-edit text-green-500" href="{{ route('post.comment.edit', $comment) }}"></a> --}}
+                                        {{-- <a id="myButtonOpen" class="fas fa-edit text-green-500" href="{{ $comment }}"></a> --}}
+                                        <button id="myButtonOpen" class="fas fa-edit text-green-500"></button>
+                                        <form action="{{ route('post.comment.destroy', $comment) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+
+                                            <button type="submit" class="fas fa-trash-alt text-red-500"></button>
+                                        
+                                        </form>
+                                        
+                                    </div>
+                                
+                                    <textarea name="message" id="message" cols="80" rows="4" class="border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly">{{ $comment->message }}</textarea>
+                                </div>
                             @endif
                             @if ($comment->status == 2 AND $comment->user_id != auth()->user()->id)
                                 <small>{{ $comment->user->name }} {{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
@@ -135,7 +159,7 @@
                         </div>
                     @endif
 
-                    {!! Form::model($comment, ['route' => ['post.comment.update', $comment], 'method' => 'put']) !!}
+                    {{-- {!! Form::model($comment, ['route' => ['post.comment.update', $comment], 'method' => 'put']) !!}
                         
                             {!! Form::label('message','Comentario', ['class' => 'block text-m font-semibold  text-gray-700']) !!}
                             {!! Form::textarea('message', null, ['class' => 'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md', 'rows' => '3' , 'required']) !!}
@@ -150,7 +174,7 @@
                             Cancelar
                         </button>
     
-                    {!! Form::close() !!}
+                    {!! Form::close() !!} --}}
                   </div>
                 </div>
               </div>
@@ -161,19 +185,5 @@
           </div>
         </div>
        </div>
-
-    <script>
-        window.onload = function () {
-
-            $('#myButtonOpen').click(function () { 
-                $( '#myModal' ).removeClass( "hidden" ); 
-            }); 
-
-            $('#myButtonClose').click(function () { 
-                $( '#myModal' ).addClass( "hidden" );  
-            });
-
-        };
-    </script>
 
 </x-app-layout>
