@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostPointController;
 use App\Http\Controllers\PostCommentController;
 
 /*
@@ -35,6 +36,8 @@ Route::get('category/{category}', [PostController::class, 'category'])->name('po
 Route::get('tag/{tag}', [PostController::class, 'tag'])->name('posts.tag');
 
 Route::resource('post/comment', PostCommentController::class)->only(['store', 'edit', 'update','destroy'])->names('post.comment');
+
+Route::resource('post/point', PostPointController::class)->names('post.point');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

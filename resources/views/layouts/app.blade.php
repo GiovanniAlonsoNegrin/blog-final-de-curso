@@ -99,6 +99,10 @@
                     for(var i=1; i <= position; i++){
                         $('#star'+i).removeClass('far');
                         $('#star'+i).addClass('fas');
+                        $('#star'+i).click(function () { 
+                            $('#score').val(i-1);
+                            $('#form').submit();
+                        });
                     }
                 });
                 
@@ -109,32 +113,13 @@
                         $('#star'+i).addClass('far');
                     }
                 });
-    
-                $('#star1').click(function () { 
-                    $('#form').submit();
-                });
-    
-                $('#star2').click(function () { 
-                    $('#form').submit();
-                });
-    
-                $('#star3').click(function () { 
-                    $('#form').submit();
-                });
-    
-                $('#star4').click(function () { 
-                    $('#form').submit();
-                });
-    
-                $('#star5').click(function () { 
-                    $('#form').submit();
-                });
-    
-                $('#star6').click(function () { 
-                    $('#form').submit();
-                });
-    
             };
+
+        </script>
+        <script>
+            Livewire.on('data-send'(CommentID, UserID) => {
+                    console.log('dentro');
+                });
         </script>
         
     </head>
@@ -143,6 +128,8 @@
 
         <div class="min-h-screen">
             @livewire('navigation')
+
+            @livewire('comment-edit')
 
             <!-- Page Content -->
             <main>

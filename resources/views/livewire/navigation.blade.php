@@ -32,8 +32,9 @@
 
                 {{-- Logo --}}
                 <a href="/" class="flex-shrink-0 flex items-center">
-                    <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
-                    <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow">
+                    <img class="block lg:hidden h-12 w-auto" src="{{ Storage::url('img/LOGO_redondo.png') }}" alt="FullGames">
+                    <img class="hidden lg:block h-11 w-auto" src="{{ Storage::url('img/LOGO_redondo.png') }}" alt="FullGames">
+                    <h1 class="hidden lg:block ml-1 text-white text-lg font-semibold">Full Games</h1>
                 </a>
 
                 {{-- Nav menu --}}
@@ -43,7 +44,7 @@
                     {{-- <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</a> --}}
 
                     @foreach ($categories as $category)
-                        <a href="{{ route('posts.category', $category) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ $category->name }}</a>
+                        <a href="{{ route('posts.category', $category) }}" class="hidden lg:block mt-1 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ $category->name }}</a>
                     @endforeach
                     </div>
                 </div>

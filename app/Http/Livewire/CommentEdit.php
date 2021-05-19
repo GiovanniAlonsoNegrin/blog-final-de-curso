@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Comment;
 use Livewire\Component;
 
 class CommentEdit extends Component
 {
     public function render()
     {
-        return view('livewire.comment-edit');
+        $comment = Comment::all();
+
+        return view('livewire.comment-edit', compact('comment'));
     }
 }

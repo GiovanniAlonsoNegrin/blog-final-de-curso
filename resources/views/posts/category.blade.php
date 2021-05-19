@@ -6,7 +6,7 @@
             <div class="lg:col-span-2">
                 
                 @foreach ($posts as $post)
-                    <x-card-post :post="$post" />  
+                    <x-card-post :post="$post" :points="$points"/>  
                 @endforeach
 
                 <div class="mt-4">
