@@ -17,18 +17,24 @@
                 </figure>
                 <small>{{ $post->created_at->format('d-m-Y, H:i:s') }}</small>
                 <div class="text-base text-gray-500 mt-4">
-                    <ul>
-                        @for ($i = 1; $i <= 6; $i++)
-                            <i id="star{{ $i }}" data-position="{{ $i }}" class="far fa-star text-yellow-500 text-3xl"></i>
-                        @endfor
-                    </ul>
+                    @if (Auth::user())   
+                        <div class="mb-5 text-center">
+                            <h2>Puntuame!!</h2>
+                            <ul>
+                                @for ($i = 1; $i <= 6; $i++)
+                                    <i id="star{{ $i }}" data-position="{{ $i }}" class="far fa-star text-yellow-500 text-3xl"></i>
+                                @endfor                     
+                            </ul>
+                            <h1 id="starsMsg" hidden>Gracias por puntuarme</h1>
+                        </div>
 
-                    {!! Form::open(['route' => 'post.point.store', 'autocomplete' => 'off', 'files' => true, 'id' => 'form']) !!}
+                        {!! Form::open(['route' => 'post.point.store', 'autocomplete' => 'off', 'files' => true, 'id' => 'form']) !!}
 
-                        {!! Form::hidden('score', '', ['id' => 'score']) !!}
-                        {!! Form::hidden('post_id', $post->id) !!}
+                            {!! Form::hidden('score', '', ['id' => 'score']) !!}
+                            {!! Form::hidden('post_id', $post->id) !!}
 
-                    {!! Form::close() !!}
+                        {!! Form::close() !!}
+                    @endif
 
                     <div class="text-justify">
                         {!! $post->body !!}

@@ -18,7 +18,7 @@ class PostSeeder extends Seeder
     {
         $posts = Post::factory(300)->create();
 
-        $comments = Comment::factory(10)->create();
+        Comment::factory(600)->create();
 
         foreach ($posts as $post) {
             Image::factory(1)->create([

@@ -16,7 +16,7 @@ class CreatePostPointsTable extends Migration
         Schema::create('post_points', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('score', [1, 2, 3, 4, 5, 6])->nullable();
+            $table->float('score')->nullable();
             $table->unsignedBigInteger('post_id');
 
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');

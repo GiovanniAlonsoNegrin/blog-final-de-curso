@@ -19,7 +19,6 @@ class PostController extends Controller
                                                 ->avg('score'));  
         }
 
-        // dd($points);
         return view('posts.index', compact('posts', 'points'));
     }
 
@@ -53,7 +52,7 @@ class PostController extends Controller
                      ->where('status', 2)
                      ->latest('id')
                      ->paginate(6);
-
+        
         $points = array();
         foreach ($posts as $post) {
             $points[$post->id] = round(PostPoint::where('post_id', $post->id)

@@ -94,21 +94,57 @@
                 });
     
                 //Stars points
-                $('.fa-star').on('mouseover',function(){
+                $('.fa-star').on('mouseover',function(event){
+                    event.preventDefault();
                     let position = $(this).data('position');
-                    for(var i=1; i <= position; i++){
+                    for(let i=1; i <= position; i++){
                         $('#star'+i).removeClass('far');
                         $('#star'+i).addClass('fas');
                         $('#star'+i).click(function () { 
-                            $('#score').val(i-1);
-                            $('#form').submit();
+                            // $('#score').val(i);
+                            // $('#form').submit();
+                            switch (i) {
+                                case 1:
+                                    $('#score').val(1);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                                case 2:
+                                    $('#score').val(2.5);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                                case 3:
+                                    $('#score').val(3.5);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                                case 4:
+                                    $('#score').val(4.5);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                                case 5:
+                                    $('#score').val(7.5);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                                case 6:
+                                    $('#score').val(10);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                            
+                                default:
+                                    break;
+                            }
                         });
                     }
                 });
                 
                 $('.fa-star').on('mouseout',function(){
                     let position = $(this).data('position');
-                    for(var i=1; i <= position; i++){
+                    for(let i=1; i <= position; i++){
                         $('#star'+i).removeClass('fas');
                         $('#star'+i).addClass('far');
                     }
@@ -117,9 +153,9 @@
 
         </script>
         <script>
-            Livewire.on('data-send'(CommentID, UserID) => {
-                    console.log('dentro');
-                });
+            // Livewire.on('data-send'(CommentID, UserID) => {
+            //         console.log('dentro');
+            //     });
         </script>
         
     </head>
