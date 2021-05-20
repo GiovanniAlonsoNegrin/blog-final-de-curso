@@ -72,6 +72,32 @@
                 justify-content: center;
                 pointer-events: none;
             }
+
+            .comentarioPost:hover .accionsComment{
+                opacity: 1;
+                pointer-events: initial;
+            }
+
+            .accionsComment{
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background: none;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: .3s all;
+            }
+
+            .accionsComment > *{
+                margin: 0 5px;
+            }
+            .answerComment{
+                cursor: pointer;
+            }
         </style>
 
         @livewireStyles

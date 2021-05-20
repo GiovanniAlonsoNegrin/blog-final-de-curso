@@ -17,7 +17,8 @@
                             </div>
                         @endif
 
-                        {{-- {!! Form::model($comment, ['route' => ['post.comment.update', $comment], 'method' => 'put']) !!}
+                        {!! Form::model(['method' => 'put']) !!}
+                        {{-- {!! Form::model($comment, ['route' => ['post.comment.update', $comment], 'method' => 'put']) !!} --}}
                             
                                 {!! Form::label('message','Comentario', ['class' => 'block text-m font-semibold  text-gray-700']) !!}
                                 {!! Form::textarea('message', null, ['class' => 'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md', 'rows' => '3' , 'required']) !!}
@@ -32,7 +33,7 @@
                                 Cancelar
                             </button>
         
-                        {!! Form::close() !!} --}}
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

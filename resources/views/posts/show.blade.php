@@ -87,12 +87,21 @@
                                         
                                     </div>
                                 
-                                    <textarea name="message" id="message" cols="80" rows="4" class="border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly">{{ $comment->message }}</textarea>
+                                    <textarea name="message" id="message" cols="80" rows="4" class="border-2 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly">{{ $comment->message }}</textarea>
                                 </div>
                             @endif
                             @if ($comment->status == 2 AND $comment->user_id != auth()->user()->id)
-                                <small>{{ $comment->user->name }} {{ $comment->created_at->format('d-m-Y H:i:s') }}</small>
-                                {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
+                                <small>{{ $comment->user->name }} {{ $comment->created_at->format('d-m-Y H:i:s') }}</small> 
+                                <div class="comentarioPost">
+                                    
+                                    <div class="accionsComment">
+                                        <small class="text-blue-500 answerComment">Responder</small>
+                                    </div>
+
+                                    {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
+
+                                </div>
+                               
                             @endif
                             @if ($comment->status == 2 AND $comment->user_id == auth()->user()->id)
                                 <small>
@@ -101,8 +110,6 @@
     
                                 <div class="comentarioPost">
                                     <div class="accionesPost">
-                                        {{-- <a id="myButtonOpen" class="fas fa-edit text-green-500" href="{{ route('post.comment.edit', $comment) }}"></a> --}}
-                                        {{-- <a id="myButtonOpen" class="fas fa-edit text-green-500" href="{{ $comment }}"></a> --}}
                                         <button id="myButtonOpen" class="fas fa-edit text-green-500"></button>
                                         <form action="{{ route('post.comment.destroy', $comment) }}" method="post">
                                             @csrf
@@ -114,7 +121,7 @@
                                         
                                     </div>
                                 
-                                    <textarea name="message" id="message" cols="80" rows="4" class="border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly">{{ $comment->message }}</textarea>
+                                    <textarea name="message" id="message" cols="80" rows="4" class="border-2 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly">{{ $comment->message }}</textarea>
                                 </div>
                             @endif
                         @endif

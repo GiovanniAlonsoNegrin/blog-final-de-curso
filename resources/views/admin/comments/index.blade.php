@@ -38,6 +38,7 @@
                                 @error('message')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
+                                
                                 @can('admin.comments.validate')
                                     {!! Form::submit('Validar', ['class' => 'btn btn-success btn-sm mt-2 mr-1 float-left']) !!}
                                 @endcan

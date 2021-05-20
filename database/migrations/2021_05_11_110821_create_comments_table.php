@@ -17,11 +17,13 @@ class CreateCommentsTable extends Migration
             $table->id();
 
             $table->text('message')->nullable();
-            $table->enum('status', [1, 2, 3])->default(1);
+            $table->enum('status', [1, 2])->default(1);
 
+            $table->unsignedBigInteger('comment_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_id');
 
+            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             

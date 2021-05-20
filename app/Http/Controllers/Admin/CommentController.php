@@ -22,6 +22,7 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::where('status' , '1')
+                           ->paginate(10)
                            ->get();
 
         return view('admin.comments.index', compact('comments'));
