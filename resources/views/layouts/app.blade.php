@@ -110,15 +110,6 @@
 
         <script>
             window.onload = function () {
-                //Modal
-                $('#myButtonOpen').click(function () { 
-                    $( '#myModal' ).removeClass( "hidden" ); 
-                }); 
-    
-                $('#myButtonClose').click(function () { 
-                    $( '#myModal' ).addClass( "hidden" );  
-                });
-    
                 //Stars points
                 $('.fa-star').on('mouseover',function(event){
                     event.preventDefault();

@@ -5,14 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 
 class CommentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:admin.posts.index')->only('index');
-        $this->middleware('can:admin.posts.edit')->only('edit', 'update');
-        $this->middleware('can:admin.posts.destroy')->only('destroy');
+        $this->middleware('can:admin.comments.index')->only('index');
+        $this->middleware('can:admin.comments.edit')->only('edit', 'update');
+        $this->middleware('can:admin.comments.destroy')->only('destroy');
     }
     /**
      * Display a listing of the resource.
@@ -21,9 +22,10 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::where('status' , '1')
-                           ->paginate(10)
-                           ->get();
+        Paginator::useBootstrap();
+        
+        $comments = Comment::where('status' , 1)
+                           ->paginate(20);
 
         return view('admin.comments.index', compact('comments'));
     }
