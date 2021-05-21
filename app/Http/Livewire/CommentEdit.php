@@ -7,10 +7,30 @@ use Livewire\Component;
 
 class CommentEdit extends Component
 {
+    public $open = false;
+    
+    public $comment;
+
+    protected $rules = [
+        'comment.message' => 'required'
+    ];
+
+    public function mount(Comment $comment){
+        $this->comment = $comment;
+    }
+
+    public function save(){
+        $this->validate(); //reglas de validación.
+        $this->comment->save(); //guarda el comentario actualizado y lo manda a la base de datos.
+
+        $this->reset(['open']); //resetea nuestro modal.
+        $this->emit('render'); //Renderiza el componente commets para ver el comentario actualizado.
+
+        // $this->emit('alert', 'El post se actualizó con éxito'); //Muestra un alert de confirmación.
+    }
+
     public function render()
     {
-        $comment = Comment::all();
-
-        return view('livewire.comment-edit', compact('comment'));
+        return view('livewire.comment-edit');
     }
 }
