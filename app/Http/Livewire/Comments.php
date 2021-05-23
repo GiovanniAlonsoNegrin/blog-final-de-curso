@@ -2,33 +2,28 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Comment;
 use App\Models\Post;
-use App\Models\User;
+use App\Models\Comment;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Comments extends Component
 {
     public $post;
     public $comment;
 
-    public $message, $post_id, $user_id;
+    public $message, $post_id ,$user_id;
 
     protected $listeners = ['render' => 'render'];
 
     public function mount(Post $post){
         $this->post = $post;
-        $this->post_id = Post::where('id', '=', $post->id)
-                             ->get();
+        $this->post_id = $post->id;
+        $this->user_id = Auth::user()->id;
     }
 
     public function mountComment (Comment $comment){
         $this->comment = $comment;
-    }
-
-    public function mountUser (User $user){
-        $this->user_id = User::where('id', auth()->user()->id)
-                             ->get();
     }
 
     public function save(){

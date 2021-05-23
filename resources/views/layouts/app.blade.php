@@ -182,8 +182,6 @@
         <div class="min-h-screen">
             @livewire('navigation')
 
-            @livewire('comment-edit')
-
             <!-- Page Content -->
             <main>
                 {{ $slot }}

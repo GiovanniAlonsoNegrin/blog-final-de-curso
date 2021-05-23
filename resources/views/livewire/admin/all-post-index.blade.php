@@ -29,7 +29,29 @@
                             <td width="10px">
                                 @can('admin.comments.posts')
                                     @if ($post->comments->count())
-                                        <a class="btn btn-success btn-sm" href="{{ route('admin.posts.show', $post) }}">Comentarios</a>
+                                        <a class="btn btn-success btn-sm py-1 px-2" href="{{ route('admin.posts.show', $post) }}">
+                                            <div class="row">
+                                                <div class="col">
+                                                    Comentarios
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6 bg-warning rounded">
+                                                    @foreach ($post->comments as $comment)
+                                                        @if ($comment->status == 2)
+                                                            {{ $post->comments->count() }}  
+                                                        @endif    
+                                                    @endforeach
+                                                </div>
+                                                <div class="col-6 bg-secondary rounded">
+                                                    @foreach ($post->comments as $comment)
+                                                        @if ($comment->status == 1)
+                                                            {{ $comment->count() }} 
+                                                        @endif    
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </a>
                                     @else
                                         <a class="btn btn-secondary btn-sm" style="cursor: default;" href="#">Comentarios</a>
                                     @endif

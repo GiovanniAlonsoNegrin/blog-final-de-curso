@@ -28,21 +28,32 @@
                             </td>
                             <td width="10px">
                                 @if ($post->comments->count())
-                                    <a class="btn btn-success btn-sm" href="{{ route('admin.posts.show', $post) }}">
+                                    <a class="btn btn-success btn-sm py-1 px-2" href="{{ route('admin.posts.show', $post) }}">
                                         <div class="row">
                                             <div class="col">
                                                 Comentarios
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-6 bg-warning">
-                                                @if ()
-                                                    $post->comments->count()
-                                                @endif
-                                                p.mod
+                                            <div class="col-6 bg-warning rounded">
+                                                @foreach ($post->comments as $comment)
+                                                    @if ($comment->status == 2)
+                                                        @php
+                                                            $result =+ $post->comments->count();
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ $result }}  
                                             </div>
-                                            <div class="col-6 bg-success">
-                                                t.com
+                                            <div class="col-6 bg-secondary rounded">
+                                                @foreach ($post->comments as $comment)
+                                                    @if ($comment->status == 1)
+                                                        @php
+                                                            $result =+ $post->comments->count();
+                                                        @endphp 
+                                                    @endif  
+                                                @endforeach
+                                                {{ $result }} 
                                             </div>
                                         </div>
                                     </a>
