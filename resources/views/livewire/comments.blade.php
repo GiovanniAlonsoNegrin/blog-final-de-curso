@@ -50,7 +50,8 @@
                 <div class="comentarioPost">
                     
                     <div class="accionsComment">
-                        <small class="text-blue-500 answerComment">Responder</small>
+                        {{-- <small class="text-blue-500 answerComment">Responder</small> --}}
+                         @livewire('comment-answer')
                     </div>
 
                     {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}
