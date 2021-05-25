@@ -36,24 +36,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-6 bg-warning rounded">
-                                                @foreach ($post->comments as $comment)
-                                                    @if ($comment->status == 2)
-                                                        @php
-                                                            $result =+ $post->comments->count();
-                                                        @endphp
-                                                    @endif
-                                                @endforeach
-                                                {{ $result }}  
+                                                <small style="font-size: 10px;">{{count($post->comments->where('status', 2)) ?? '0'}}</small>
                                             </div>
                                             <div class="col-6 bg-secondary rounded">
-                                                @foreach ($post->comments as $comment)
-                                                    @if ($comment->status == 1)
-                                                        @php
-                                                            $result =+ $post->comments->count();
-                                                        @endphp 
-                                                    @endif  
-                                                @endforeach
-                                                {{ $result }} 
+                                                <small style="font-size: 10px;">{{count($post->comments->where('status', 1)) ?? '0'}}</small>
                                             </div>
                                         </div>
                                     </a>
@@ -62,14 +48,14 @@
                                 @endif
                             </td>
                             <td width="10px">
-                                <a class="btn btn-primary btn-sm" href="{{ route('admin.posts.edit', $post) }}">Editar</a>
+                                <a class="btn btn-primary btn-sm mt-2" href="{{ route('admin.posts.edit', $post) }}">Editar</a>
                             </td>
                             <td width="10px">
                                 <form action="{{ route('admin.posts.destroy', $post) }}" method="post">
                                     @csrf
                                     @method('delete')
 
-                                    <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                    <button class="btn btn-danger btn-sm mt-2" type="submit">Eliminar</button>
                                 </form>
                             </td>
                         </tr>   

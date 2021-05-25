@@ -3,8 +3,7 @@
 @section('title', 'Full Games')
 
 @section('content_header')
-    {{-- {!! Form::submit('Validar todo', ['class' => 'btn btn-success btn-sm float-right']) !!} --}}
-    <button id="allValidate" class="btn btn-success btn-sm float-right">Validar todo</button>
+    <button class="btn btn-success btn-sm float-right">Validar todo</button>
     <h1>Lista de comentarios pendientes de moderación</h1>
 @stop
 
@@ -119,14 +118,5 @@
         </div>
 
     </div>
-
-    <script>
-        window.onload = function() {
-            $('#allValidate').click(function() {
-                $('form').submit();
-            });
-        }
-
-    </script>
 
 @stop

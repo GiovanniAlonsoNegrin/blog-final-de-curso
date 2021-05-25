@@ -37,18 +37,10 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-6 bg-warning rounded">
-                                                    @foreach ($post->comments as $comment)
-                                                        @if ($comment->status == 2)
-                                                            {{ $post->comments->count() }}  
-                                                        @endif    
-                                                    @endforeach
+                                                    <small style="font-size: 10px;">{{count($post->comments->where('status', 2)) ?? '0'}}</small>
                                                 </div>
                                                 <div class="col-6 bg-secondary rounded">
-                                                    @foreach ($post->comments as $comment)
-                                                        @if ($comment->status == 1)
-                                                            {{ $comment->count() }} 
-                                                        @endif    
-                                                    @endforeach
+                                                    <small style="font-size: 10px;">{{count($post->comments->where('status', 1)) ?? '0'}}</small>
                                                 </div>
                                             </div>
                                         </a>

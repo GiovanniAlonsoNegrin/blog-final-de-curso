@@ -107,6 +107,7 @@
 
         <script src="https://kit.fontawesome.com/e6dfba9ce5.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script>
             window.onload = function () {
@@ -169,11 +170,6 @@
             };
 
         </script>
-        <script>
-            // Livewire.on('data-send'(CommentID, UserID) => {
-            //         console.log('dentro');
-            //     });
-        </script>
         
     </head>
     <body class="font-sans antialiased">
@@ -181,6 +177,7 @@
 
         <div class="min-h-screen">
             @livewire('navigation')
+            @livewire('comment-edit')
 
             <!-- Page Content -->
             <main>
@@ -191,5 +188,15 @@
         @stack('modals')
 
         @livewireScripts
+
+        <script>
+            Livewire.on('alert', function (message){
+                Swal.fire(
+                    'Genial!',
+                     message,
+                    'success'
+                )
+            });
+        </script>
     </body>
 </html>
