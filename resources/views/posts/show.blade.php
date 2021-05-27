@@ -41,6 +41,8 @@
                     </div>
                 </div>
                 @livewire('comments', ['post' => $post])
+
+                {{ $post->count }}
             </div>
             <aside>
                 <h1 class="text-2xl font-bold text-gray-600 mb-4">Más en {{ $post->category->name }}</h1>

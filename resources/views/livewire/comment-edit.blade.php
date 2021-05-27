@@ -1,7 +1,8 @@
 <div>
     <a wire:click="$set('open', true)">
-        <i class="fas fa-edit text-green-500 cursor-pointer"></i>
+        <i class="fas fa-edit text-green-500" style="cursor: pointer"></i>
     </a>
+
 
     <x-jet-dialog-modal wire:model="open">
         <x-slot name='title'>
@@ -12,6 +13,9 @@
             <div class="mb-4">
                 <textarea wire:model="comment.message" class="border-2 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full" rows="6"></textarea>
             </div>
+            @error('comment.message')
+                <small class="text-red-500">{{ $message }}</small>
+            @enderror
         </x-slot>
 
         <x-slot name='footer'>
@@ -31,5 +35,4 @@
             </button>
         </x-slot>
     </x-jet-dialog-modal>
-
 </div>

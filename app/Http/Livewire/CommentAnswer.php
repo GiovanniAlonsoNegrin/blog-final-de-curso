@@ -12,8 +12,7 @@ class CommentAnswer extends Component
     public $comment;
 
     protected $rules = [
-        'comment.message' => 'required',
-        'comment.id' => 'required'
+        'comment.message' => 'required'
     ];
 
     public function mount(Comment $comment){
@@ -21,13 +20,17 @@ class CommentAnswer extends Component
     }
 
     public function save(){
+
+        dd('id:' . $this->comment->id);
         $this->validate(); //reglas de validación.
+
         $this->comment->save(); //guarda el comentario actualizado y lo manda a la base de datos.
 
         $this->reset(['open']); //resetea nuestro modal.
-        $this->emit('render'); //Renderiza el componente commets para ver el comentario actualizado.
-
-        // $this->emit('alert', 'El post se actualizó con éxito'); //Muestra un alert de confirmación.
+        
+        $this->emitTo('livewire.comments','render'); //Renderiza el componente commets para ver el comentario actualizado.
+        
+        $this->emit('alert', 'El comentario se actualizó con éxito'); //Muestra un alert de confirmación.
     }
 
     public function render()

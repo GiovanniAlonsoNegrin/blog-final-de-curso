@@ -177,7 +177,6 @@
 
         <div class="min-h-screen">
             @livewire('navigation')
-            @livewire('comment-edit')
 
             <!-- Page Content -->
             <main>
@@ -191,11 +190,14 @@
 
         <script>
             Livewire.on('alert', function (message){
-                Swal.fire(
-                    'Genial!',
-                     message,
-                    'success'
-                )
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Genial!',
+                    text: message,
+                    confirmButtonText: 'ok'
+                }).then( function(){
+                    window.location.reload();
+                });
             });
         </script>
     </body>

@@ -1,20 +1,21 @@
 <div>
-    {{-- In work, do what you enjoy. --}}
-    
     <a wire:click="$set('open', true)">
-        <small class="text-blue-500 answerComment">Responder</small>
+        <small>Responder</small>
     </a>
+
 
     <x-jet-dialog-modal wire:model="open">
         <x-slot name='title'>
-            Responder Comentario
+            Editar comentario
         </x-slot>
 
         <x-slot name='content'>
             <div class="mb-4">
-                <input wire:model="comment.id" type="text" hidden>
                 <textarea wire:model="comment.message" class="border-2 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full" rows="6"></textarea>
             </div>
+            @error('comment.message')
+                <small class="text-red-500">{{ $message }}</small>
+            @enderror
         </x-slot>
 
         <x-slot name='footer'>

@@ -8,8 +8,8 @@
             <label for="message" class="block uppercase text-gray-700 text-s font-bold mb-2 mt-2">Comentarios</label>
             <textarea wire:model.defer="message" name="message" id="message" cols="80" rows="4" required class="border-2 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full"></textarea>
             
-            <input wire:model.defer="user_id" type="text" name="user_id" hidden value{{ auth()->user()->id }}>
-            <input wire:model.defer="post_id" type="text" name="post_id" hidden value{{ $post->id }}>
+            <input wire:model.defer="user_id" type="text" name="user_id" hidden>
+            <input wire:model.defer="post_id" type="text" name="post_id" hidden>
             
             <button wire:click="save" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-green-500 rounded shadow ripple hover:shadow-lg hover:bg-green-600 focus:outline-none mt-1">Comentar</button>
 
@@ -51,7 +51,7 @@
                     
                     <div class="accionsComment">
                         {{-- <small class="text-blue-500 answerComment">Responder</small> --}}
-                         @livewire('comment-answer')
+                        @livewire('comment-answer', ['comment' => $comment], key($comment->id))
                     </div>
 
                     {!! Form::textarea('message', $comment->message, ['class' => 'border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly']) !!}

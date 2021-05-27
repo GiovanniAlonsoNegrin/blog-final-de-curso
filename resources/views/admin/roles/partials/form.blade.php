@@ -13,6 +13,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Permiso</th>
                     <th>Acceso</th>
                     <th>Ver</th>
                     <th>Editar</th>
@@ -23,8 +24,6 @@
                 @foreach ($permissions as $permission)
                     <tr>
                         <td>
-                            
-
                             {{ $permission->description }}
                         </td>
                         <td>

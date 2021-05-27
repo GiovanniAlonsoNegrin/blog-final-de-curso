@@ -3,7 +3,7 @@
 @section('title', 'Full Games')
 
 @section('content_header')
-    <button class="btn btn-success btn-sm float-right">Validar todo</button>
+    @livewire('admin.validate-all-comments')
     <h1>Lista de comentarios pendientes de moderación</h1>
 @stop
 
@@ -60,8 +60,7 @@
                             </td>
                             <td width="10px">
                                 @can('admin.comments.edit')
-                                    <a class="btn btn-primary btn-sm"
-                                        href="{{ route('admin.comments.edit', $comment) }}">Editar</a>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.comments.edit', $comment) }}">Editar</a>
                                 @endcan
                             </td>
 
