@@ -22,6 +22,6 @@ class ValidateAllComments extends Component
             $comment->save();
         }
 
-        $this->emit('alert', 'Los comentarios se validaron con éxito!');
+        $this->emit('alert');
     }
 }

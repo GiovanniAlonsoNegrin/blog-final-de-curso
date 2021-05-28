@@ -27,7 +27,7 @@
                                 @endif
                             </td>
                             <td width="10px">
-                                @can('admin.comments.posts')
+                                @can('admin.comments.index')
                                     @if ($post->comments->count())
                                         <a class="btn btn-success btn-sm py-1 px-2" href="{{ route('admin.posts.show', $post) }}">
                                             <div class="row">
@@ -50,29 +50,32 @@
                                 @endcan
                             </td>
                             <td width="10px">
-                                <a class="btn btn-primary btn-sm" href="{{ route('admin.posts.edit', $post) }}">Editar</a>
+                                @can('admin.posts.edit')
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.posts.edit', $post) }}">Editar</a>
+                                @endcan
                             </td>
                             <td width="10px">
                                 <form action="{{ route('admin.posts.destroy', $post) }}" method="post">
                                     @csrf
                                     @method('delete')
-
-                                    <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                    @can('admin.posts.create')
+                                        <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                    @endcan
                                 </form>
                             </td>
-                        </tr>   
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        
+
         <div class="card-footer">
             {{ $posts->links() }}
         </div>
     @else
         <div class="card-body">
             <strong>No hay ningún registro...</strong>
-        </div> 
+        </div>
     @endif
 
 </div>

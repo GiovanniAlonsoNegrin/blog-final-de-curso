@@ -3,7 +3,9 @@
 @section('title', 'Full Games')
 
 @section('content_header')
-    @livewire('admin.validate-all-comments')
+    @can('admin.comments.validate')
+        @livewire('admin.validate-all-comments')
+    @endcan
     <h1>Lista de comentarios pendientes de moderación</h1>
 @stop
 
@@ -15,6 +17,9 @@
     @endif
 
     <div class="card">
+
+        @if ($comments->where('status', 1)->count())
+
 
         <div class="card-body">
 
@@ -115,6 +120,12 @@
         <div class="card-footer">
             {{ $comments->links() }}
         </div>
+
+    @else
+        <div class="card-body">
+            <strong>No existen comentarios pendientes de moderación...</strong>
+        </div>   
+    @endif
 
     </div>
 
