@@ -19,7 +19,7 @@
                 <div class="text-base text-gray-500 mt-4">
                     @if (Auth::user())   
                         <div class="mb-5 text-center">
-                            <h2>Puntuame!!</h2>
+                            <h2>¡¡Puntuame!!</h2>
                             <ul>
                                 @for ($i = 1; $i <= 6; $i++)
                                     <i id="star{{ $i }}" data-position="{{ $i }}" class="far fa-star text-yellow-500 text-3xl"></i>
@@ -41,6 +41,7 @@
                     </div>
                 </div>
                 @livewire('comments', ['post' => $post])
+                
 
                 {{ $post->count }}
             </div>

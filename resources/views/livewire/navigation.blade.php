@@ -32,8 +32,8 @@
 
                 {{-- Logo --}}
                 <a href="/" class="flex-shrink-0 flex items-center">
-                    <img class="block lg:hidden h-12 w-auto" src="{{ Storage::url('img/LOGO_redondo.png') }}" alt="FullGames">
-                    <img class="hidden lg:block h-11 w-auto" src="{{ Storage::url('img/LOGO_redondo.png') }}" alt="FullGames">
+                    <img class="block lg:hidden h-12 w-auto" src="{{ url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Video-Game-Controller-Icon.svg/1024px-Video-Game-Controller-Icon.svg.png') }}" alt="FullGames">
+                    <img class="hidden lg:block h-11 w-auto" src="{{ url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Video-Game-Controller-Icon.svg/1024px-Video-Game-Controller-Icon.svg.png') }}" alt="FullGames">
                     <h1 class="hidden lg:block ml-1 text-white text-lg font-semibold">Full Games</h1>
                 </a>
 

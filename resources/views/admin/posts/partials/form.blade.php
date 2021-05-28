@@ -66,7 +66,7 @@
             @isset ($post->image)
             <img id="picture" src="{{ Storage::url($post->image->url) }}" alt="Image">
             @else
-                <img id="picture" src="https://cdn.pixabay.com/photo/2015/04/20/13/17/work-731198_1280.jpg" alt="Image">
+                <img id="picture" src="https://programacion.net/files/article/20160307050346_programando.jpg" alt="Image">
             @endisset
         </div>  
     </div>
@@ -81,7 +81,6 @@
 
         </div>
 
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora autem ratione quas!</p>
 
     </div>
 </div>

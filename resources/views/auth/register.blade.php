@@ -61,7 +61,7 @@
     <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full bg-gray-200 py-2 px-2 rounded-xl space-y-8">
             <div>
-                <img class="mx-auto w-28" src="{{ Storage::url('img/LOGO_redondo.png') }}" alt="Workflow">
+                <img class="mx-auto w-28" src="{{ url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Video-Game-Controller-Icon.svg/1024px-Video-Game-Controller-Icon.svg.png') }}" alt="Workflow">
                 <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
                     Full Games
                 </h2>

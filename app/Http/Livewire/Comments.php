@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
+use App\Models\Answer;
 use App\Models\Comment;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,9 @@ class Comments extends Component
     public $post;
 
     public $message, $post_id ,$user_id;
+    public $answers;
+    public $answer;
+    public $comments, $respuesta;
 
     protected $rules = [
         'message' => 'required'
@@ -20,12 +24,26 @@ class Comments extends Component
 
     public function mount(Post $post){
         $this->post = $post;
+        $this->answers = Answer::all();
+        $this->comments = Comment::all();
+        // $this->answers = $answer->message;
+        // $this->comment_id = $comment->id;
+    
         $this->post_id = $post->id;
         if (Auth::guest()) {
             
         } else {
             $this->user_id = Auth::user()->id;
         }
+        
+    }
+
+    public function answers(Answer $answer){
+        // $this->answers = $answer;
+        
+        // $this->answer = Answer::message();
+        $this->comment_id = $comment->id;
+
         
     }
 
@@ -44,6 +62,7 @@ class Comments extends Component
         
         $this->render();
     }
+
 
     public function render()
     {
