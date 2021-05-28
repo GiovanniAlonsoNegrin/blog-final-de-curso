@@ -9,7 +9,7 @@
 
     <x-slot name="content">
         <h3 class="text-lg font-medium text-gray-900">
-            @if ($this->enabled)
+            @if ($this->enabled) 
                 {{ __('You have enabled two factor authentication.') }}
             @else
                 {{ __('You have not enabled two factor authentication.') }}

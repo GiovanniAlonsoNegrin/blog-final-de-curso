@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; 
 
-use App\Models\Tag;
-use App\Models\Post;
-use App\Models\Comment;
+use App\Models\Tag; 
+use App\Models\Post; 
+use App\Models\Comment; 
 use App\Models\Category;
 
 class PostController extends Controller
@@ -22,21 +22,24 @@ class PostController extends Controller
         // dd($post->comments);
         // $comments = Comment::find('post_id', $post->id)  
         //                     ->get();
-        // $this->authorize('commentPublished', $comments);
-        // $users = User::where('id', $comments->id)
-                    // ->;
-        // $post->count += 1;
-        // $post->save(); mediante estas dos líneas de código se suma una visita.
+        // $this->authorize('commentPublished', $comments); 
+        // $users = User::where('id', $comments->id)  
+         $post->count += 1;                 //->; 
+         $post->save(); //mediante estas dos líneas de código se suma una visita.
 
         $similars = Post::where('category_id', $post->category_id)
-                       ->where('status', 2)
+                       ->where('status', 2) 
                        ->where('id', '!=', $post->id)
-                       ->latest('id')
+                       ->latest('id') 
                        ->take(5)
                        ->get();
 
-        return view('posts.show', compact('post', 'similars'));
-    }
+        $maxviews = Post::orderBy('count','DESC')->where('category_id', $post->category_id)->take(5)->get(); 
+
+
+        return view('posts.show', compact('post', 'similars','maxviews'));
+    } 
+  
 
     public function category(Category $category){
         $categories = Category::all();
@@ -45,15 +48,50 @@ class PostController extends Controller
                     ->where('status', 2)
                     ->latest('id')
                     ->paginate(6);
+            
+        $myPosts = Post::all();
 
-        return view('posts.category', compact('posts', 'category', 'categories'));
+        foreach ($myPosts as $post) {
+            $maxviews = Post::orderBy('count','DESC')->where('category_id', $category->id)->take(5)->get(); 
+        }
+
+      
+                    
+        return view('posts.category', compact('posts', 'category', 'categories','maxviews'));
     }
 
     public function tag(Tag $tag){
         $tags = Tag::all();
         
         $posts = $tag->posts()->where('status', 2)->latest('id')->paginate(6);
+        
+        //$myPosts = Post::all();
+        
+       // foreach ($myPosts->tags as $tag) {
+    
+       //}
+
+        //$maxviews = Post::orderBy('count','DESC')->where($post->id, $post->id)->take(5)->get(); 
 
         return view('posts.tag', compact('tag', 'tags', 'posts'));
     }
-}
+
+    public function maxViews(Post $post){
+
+        $posts = Post::orderBy('count','DESC')
+                    ->paginate(6);
+ 
+
+        return view ('posts.maxviews', compact('post', 'posts')); 
+    }
+ 
+     public function maxComments(Post $post){
+
+     $posts = $post->comments()->orderBy(('post'), 'DESC')
+                     ->paginate(6);
+ 
+         return view('posts.maxcomments', compact('post', 'posts'));
+     }
+}   
+
+

@@ -115,10 +115,14 @@
                             @endif
                         @endif
                     @empty
-                        <p>No existen comentarios para este post.</p>
+                        <p>No existen comentarios para este post.</p>  
                     @endforelse
-                </div>
-            </div>
+                </div>  
+                    {{-- Visitor Counter --}}
+                    <div class="border border-light-blue-300 shadow rounded-md  max-w-sm w-full mx-auto content-center"> 
+                        <h1 class="text-center">Visitas  {{ $post->count}}</h1>       
+                    </div>       
+            </div>    
             <aside>
                 <h1 class="text-2xl font-bold text-gray-600 mb-4">Más en {{ $post->category->name }}</h1>
                 
@@ -136,8 +140,28 @@
                         </li>
                     @endforeach
                 </ul>
+
+                <h1 class="text-2xl font-bold text-gray-600 mb-4">Post más vistos</h1>
+                
+
+                <ul>
+                    @foreach ( $maxviews as $maxviewpost)
+                        <li class="mb-4">
+                            <a class="flex" href="{{ route('posts.show', $maxviewpost) }}">
+                                @if ($maxviewpost->image)
+                                    <img class="w-36 h-20 object-cover object-center flex-none rounded-lg" src="{{ Storage::url($maxviewpost->image->url) }}" alt="image">
+                                @else
+                                    <img class="w-36 h-20 object-cover object-center flex-none rounded-lg" src="https://cdn.pixabay.com/photo/2015/04/20/13/17/work-731198_1280.jpg" alt="image">
+                                @endif
+                                <span class="ml-2 text-gray-600">{{ $maxviewpost->name }}</span>
+                            </a>
+                        </li> 
+                    @endforeach 
+                </ul>
+
+                <a href="{{ route('posts.maxviews') }}">Ver todos los posts más vistos</a>
             </aside>
-        </div>
+        </div> 
     </div>
 
     <div id="myModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">

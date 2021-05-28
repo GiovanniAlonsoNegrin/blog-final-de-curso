@@ -34,8 +34,13 @@ Route::get('category/{category}', [PostController::class, 'category'])->name('po
 
 Route::get('tag/{tag}', [PostController::class, 'tag'])->name('posts.tag');
 
+Route::get('maxviews', [PostController::class, 'maxViews'])->name('posts.maxviews');
+
+Route::get('maxcoments',[PostController::class,'maxComents'])->name('post.maxcoments');
+
 Route::resource('post/comment', PostCommentController::class)->only(['store', 'edit', 'update','destroy'])->names('post.comment');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+ 

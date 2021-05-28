@@ -11,7 +11,7 @@ class CreatePostsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() 
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('extract')->nullable();
             $table->longText('body')->nullable();
             $table->enum('status', [1, 2])->default(1);
-
+            $table->integer('count')->default(0); 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
 

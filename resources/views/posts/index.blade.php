@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 bg-gray-200 rounded-lg mt-10">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 bg-gray-200 rounded-lg mt-10 border-8">
         <div class="container py-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($posts as $post)

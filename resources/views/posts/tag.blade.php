@@ -29,6 +29,24 @@
                         </li>
                     @endforeach
                 </ul>
+
+                <h1 class="text-2xl font-bold text-gray-600 mb-4">Post más vistos</h1>
+
+                <ul>
+                
+                    {{-- @foreach ($maxviews as $maxviewpost)
+                        <li class="mb-4">
+                            <a class="flex" href="{{ route('posts.tag', $myTag) }}">
+                                @if ($maxviewpost->image)
+                                    <img class="w-36 h-20 object-cover object-center flex-none rounded-lg" src="{{ Storage::url($similar->image->url) }}" alt="image">
+                                @else
+                                    <img class="w-36 h-20 object-cover object-center flex-none rounded-lg" src="https://cdn.pixabay.com/photo/2015/04/20/13/17/work-731198_1280.jpg" alt="image">
+                                @endif
+                                <span class="ml-2 text-gray-600">{{ $maxviewpost->name }}</span>
+                            </a>
+                        </li>
+                    @endforeach --}} 
+                </ul>
             </aside>
         </div>
     </div>
