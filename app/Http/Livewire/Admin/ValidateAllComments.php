@@ -2,23 +2,26 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Post;
+use App\Models\Comment;
 use Livewire\Component;
 
 class ValidateAllComments extends Component
 {
-    public $post;
+    public $comments = array();
 
-    public function mount(Post $post){
-        $this->post = $post;
+    public function mount(){
+        $this->comments = Comment::where('status', 1)
+                                 ->get();
     }
 
     public function save(){
-        $this->post->comment->save();
-    }
+        
+        foreach ($this->comments as $comment)
+        {
+            $comment->status = 2;
+            $comment->save();
+        }
 
-    public function render()
-    {
-        return view('livewire.admin.validate-all-comments');
+        $this->emit('alert');
     }
 }
