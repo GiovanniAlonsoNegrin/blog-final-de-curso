@@ -18,12 +18,18 @@
                                     </a>
                                 </h1>
                                 <ul class="relative">
-                                    <i class="fas fa-star text-yellow-500"></i>
-                                    <i class="far fa-star text-yellow-500"></i>
-                                    <i class="far fa-star text-yellow-500"></i>
-                                    <i class="far fa-star text-yellow-500"></i>
-                                    <i class="far fa-star text-yellow-500"></i>
-                                    <i class="far fa-star text-yellow-500"></i>
+
+                                    @for ($i = 1; $i <= 6; $i++)
+                                        @php
+                                            $result = round($points[$post->id]*6/10)
+                                        @endphp
+                                        @if ($i <= $result)   
+                                            <i id="indexStar{{ $i }}" class="fas fa-star text-yellow-500"></i>
+                                        @else
+                                            <i id="indexStar{{ $i }}" class="far fa-star text-yellow-500"></i>
+                                        @endif   
+                                    @endfor
+                                    
                                 </ul>
                                 <small class="text-white relative">{{ $post->created_at->format('d-m-Y') }}</small>
                             </div> 

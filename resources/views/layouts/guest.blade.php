@@ -13,10 +13,18 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+        <style>
+            body {
+                background-image: url(https://www.teahub.io/photos/full/28-288489_fondos-de-pantalla-4k.jpg);
+                background-size: 100vw;
+                height: 100vh;
+            }
+        </style>
+
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body>
+    <body style="background-image: url(https://www.teahub.io/photos/full/28-288489_fondos-de-pantalla-4k.jpg); background-size: 100vw; height: 100vh;">
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>

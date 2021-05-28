@@ -1,4 +1,4 @@
-@props(['post'])
+@props(['post', 'points'])
 
 <article class="mb-8 bg-white shadow-lg rounded-lg overflow-hidden">
     @if ($post->image)
@@ -14,12 +14,16 @@
         </h1>
 
         <ul>
-            <i class="fas fa-star text-yellow-500 text-3xl"></i>
-            <i class="far fa-star text-yellow-500 text-3xl"></i>
-            <i class="far fa-star text-yellow-500 text-3xl"></i>
-            <i class="far fa-star text-yellow-500 text-3xl"></i>
-            <i class="far fa-star text-yellow-500 text-3xl"></i>
-            <i class="far fa-star text-yellow-500 text-3xl"></i>
+            @for ($i = 1; $i <= 6; $i++)
+                @php
+                    $result = round($points[$post->id]*6/10)
+                @endphp
+                @if ($i <= $result)   
+                    <i id="indexStar{{ $i }}" class="fas fa-star text-yellow-500"></i>
+                @else
+                    <i id="indexStar{{ $i }}" class="far fa-star text-yellow-500"></i>
+                @endif   
+            @endfor
         </ul>
 
         <div class="text-gray-700 text-base">

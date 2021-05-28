@@ -72,6 +72,32 @@
                 justify-content: center;
                 pointer-events: none;
             }
+
+            .comentarioPost:hover .accionsComment{
+                opacity: 1;
+                pointer-events: initial;
+            }
+
+            .accionsComment{
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background: none;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: .3s all;
+            }
+
+            .accionsComment > *{
+                margin: 0 5px;
+            }
+            .answerComment{
+                cursor: pointer;
+            }
         </style>
 
         @livewireStyles
@@ -81,60 +107,68 @@
 
         <script src="https://kit.fontawesome.com/e6dfba9ce5.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script>
             window.onload = function () {
-                //Modal
-                $('#myButtonOpen').click(function () { 
-                    $( '#myModal' ).removeClass( "hidden" ); 
-                }); 
-    
-                $('#myButtonClose').click(function () { 
-                    $( '#myModal' ).addClass( "hidden" );  
-                });
-    
                 //Stars points
-                $('.fa-star').on('mouseover',function(){
+                $('.fa-star').on('mouseover',function(event){
+                    event.preventDefault();
                     let position = $(this).data('position');
-                    for(var i=1; i <= position; i++){
+                    for(let i=1; i <= position; i++){
                         $('#star'+i).removeClass('far');
                         $('#star'+i).addClass('fas');
+                        $('#star'+i).click(function () { 
+                            // $('#score').val(i);
+                            // $('#form').submit();
+                            switch (i) {
+                                case 1:
+                                    $('#score').val(1);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                                case 2:
+                                    $('#score').val(2.5);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                                case 3:
+                                    $('#score').val(3.5);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                                case 4:
+                                    $('#score').val(4.5);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                                case 5:
+                                    $('#score').val(7.5);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                                case 6:
+                                    $('#score').val(10);
+                                    $('#form').submit();
+                                    $('#starsMsg').removeAttr("hidden");
+                                    break;
+                            
+                                default:
+                                    break;
+                            }
+                        });
                     }
                 });
                 
                 $('.fa-star').on('mouseout',function(){
                     let position = $(this).data('position');
-                    for(var i=1; i <= position; i++){
+                    for(let i=1; i <= position; i++){
                         $('#star'+i).removeClass('fas');
                         $('#star'+i).addClass('far');
                     }
                 });
-    
-                $('#star1').click(function () { 
-                    $('#form').submit();
-                });
-    
-                $('#star2').click(function () { 
-                    $('#form').submit();
-                });
-    
-                $('#star3').click(function () { 
-                    $('#form').submit();
-                });
-    
-                $('#star4').click(function () { 
-                    $('#form').submit();
-                });
-    
-                $('#star5').click(function () { 
-                    $('#form').submit();
-                });
-    
-                $('#star6').click(function () { 
-                    $('#form').submit();
-                });
-    
             };
+
         </script>
         
     </head>
@@ -153,5 +187,18 @@
         @stack('modals')
 
         @livewireScripts
+
+        <script>
+            Livewire.on('alert', function (message){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Genial!',
+                    text: message,
+                    confirmButtonText: 'ok'
+                }).then( function(){
+                    window.location.reload();
+                });
+            });
+        </script>
     </body>
 </html>

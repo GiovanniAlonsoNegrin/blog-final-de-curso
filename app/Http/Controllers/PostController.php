@@ -6,13 +6,20 @@ use App\Models\Tag;
 use App\Models\Post; 
 use App\Models\Comment; 
 use App\Models\Category;
+use App\Models\PostPoint;
 
 class PostController extends Controller
 {
     public function index(){
         $posts = Post::where('status', 2)->latest('id')->paginate(8);
 
-        return view('posts.index', compact('posts'));
+        $points = array();
+        foreach ($posts as $post) {
+            $points[$post->id] = round(PostPoint::where('post_id', $post->id)
+                                                ->avg('score'));  
+        }
+
+        return view('posts.index', compact('posts', 'points'));
     }
 
     public function show(Post $post){ 
@@ -45,19 +52,17 @@ class PostController extends Controller
         $categories = Category::all();
 
         $posts = Post::where('category_id', $category->id)
-                    ->where('status', 2)  
-                    ->latest('id')
-                    ->paginate(6);
-            
-        $myPosts = Post::all();
-
-        foreach ($myPosts as $post) {
-            $maxviews = Post::orderBy('count','DESC')->where('category_id', $category->id)->take(5)->get(); 
+                     ->where('status', 2)
+                     ->latest('id')
+                     ->paginate(6);
+        
+        $points = array();
+        foreach ($posts as $post) {
+            $points[$post->id] = round(PostPoint::where('post_id', $post->id)
+                                                ->avg('score'));  
         }
 
-      
-                    
-        return view('posts.category', compact('posts', 'category', 'categories','maxviews'));
+        return view('posts.category', compact('category', 'categories', 'posts', 'points'));
     }
 
     public function tag(Tag $tag){
@@ -73,7 +78,13 @@ class PostController extends Controller
 
         //$maxviews = Post::orderBy('count','DESC')->where($post->id, $post->id)->take(5)->get(); 
 
-        return view('posts.tag', compact('tag', 'tags', 'posts'));
+        $points = array();
+        foreach ($posts as $post) {
+            $points[$post->id] = round(PostPoint::where('post_id', $post->id)
+                                                ->avg('score'));  
+        }
+
+        return view('posts.tag', compact('tag', 'tags', 'posts', 'points'));
     }
 
     public function maxViews(Post $post){

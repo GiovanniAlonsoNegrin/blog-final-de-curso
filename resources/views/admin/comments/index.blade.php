@@ -3,25 +3,80 @@
 @section('title', 'Full Games')
 
 @section('content_header')
-    {{-- {!! Form::submit('Validar todo', ['class' => 'btn btn-success btn-sm float-right']) !!}  --}}
-    <button id="allValidate" class="btn btn-success btn-sm float-right">Validar todo</button>
+    @can('admin.comments.validate')
+        @livewire('admin.validate-all-comments')
+    @endcan
     <h1>Lista de comentarios pendientes de moderación</h1>
 @stop
 
 @section('content')
-    @if (session('info')) 
+    @if (session('info'))
         <div class="alert alert-success">
             <strong>{{ session('info') }}</strong>
         </div>
     @endif
-    
+
     <div class="card">
+
+        @if ($comments->where('status', 1)->count())
+
 
         <div class="card-body">
 
-            @forelse ($comments as $comment)
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Post</th>
+                        <th>Autor</th>
+                        <th colspan="2">Comentario</th>
+                        <th colspan="3">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($comments as $comment)
+                        <tr>
+                            <td>{{ $comment->post_id }}</td>
+                            <td>{{ $comment->user->name }}</td>
+                            <td colspan="2">{{ $comment->message }}</td>
+                            <td width="10px">
+                                {!! Form::model($comment, ['route' => ['admin.comments.update', $comment], 'method' => 'put']) !!}
 
-                <div class="form-group">
+                                {!! Form::label('message', 'Comentario', 'hidden') !!}
+                                {!! Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el comentario', 'rows' => '3', 'hidden']) !!}
+
+                                {!! Form::hidden('status', '2') !!}
+
+                                @error('message')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+
+                                @can('admin.comments.validate')
+                                    {!! Form::submit('Validar', ['class' => 'btn btn-success btn-sm']) !!}
+                                @endcan
+                                {!! Form::close() !!}
+                            </td>
+                            <td width="10px">
+                                {!! Form::model($comment, ['route' => ['admin.comments.destroy', $comment], 'method' => 'delete', 'class' => 'form-inline']) !!}
+
+                                @can('admin.comments.destroy')
+                                    {!! Form::submit('Eliminar', ['class' => 'btn btn-danger btn-sm']) !!}
+                                @endcan
+                                {!! Form::close() !!}
+                            </td>
+                            <td width="10px">
+                                @can('admin.comments.edit')
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.comments.edit', $comment) }}">Editar</a>
+                                @endcan
+                            </td>
+
+                        </tr>
+                    @empty
+                        <strong>No existen comentarios pendientes de moderación...</strong>
+                    @endforelse
+                </tbody>
+            </table>
+
+            {{-- <div class="form-group">
 
                     <p>Post: {{ $comment->post_id }} | Autor: {{ $comment->user->name }} | Fecha de creación: {{ $comment->created_at->format('d-m-Y H:i:s') }}</p>
 
@@ -38,6 +93,7 @@
                                 @error('message')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
+                                
                                 @can('admin.comments.validate')
                                     {!! Form::submit('Validar', ['class' => 'btn btn-success btn-sm mt-2 mr-1 float-left']) !!}
                                 @endcan
@@ -57,22 +113,20 @@
 
                         </div>
                     </div>
-                </div>
-
-            @empty
-                <strong>No existen comentarios pendientes de moderación...</strong>
-            @endforelse
+                </div> --}}
 
         </div>
-        
-    </div>
 
-    <script>
-        window.onload = function () {
-            $('#allValidate').click(function () { 
-                $('form').submit();
-            });
-        }
-    </script>
+        <div class="card-footer">
+            {{ $comments->links() }}
+        </div>
+
+    @else
+        <div class="card-body">
+            <strong>No existen comentarios pendientes de moderación...</strong>
+        </div>   
+    @endif
+
+    </div>
 
 @stop

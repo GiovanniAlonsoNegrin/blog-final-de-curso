@@ -5,16 +5,17 @@ namespace Database\Factories;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Answer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CommentFactory extends Factory
+class AnswerFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Comment::class;
+    protected $model = Answer::class;
 
     /**
      * Define the model's default state.
@@ -25,9 +26,8 @@ class CommentFactory extends Factory
     {
         return [
            'message' => $this->faker->text(50),
-           'status' => $this->faker->randomElement([1, 2]),
            'user_id' => User::all()->random()->id,
-           'post_id' => Post::all()->random()->id,
+           'comment_id' => Comment::all()->random()->id,
         ];
     }
 }

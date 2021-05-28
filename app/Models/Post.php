@@ -29,9 +29,17 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function point(){
+        return $this->belongsTo(PostPoint::class);
+    }
+
     //One to many    
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function points(){
+        return $this->hasMany(PostPoint::class);
     }
     // Many to many
     public function tags(){
