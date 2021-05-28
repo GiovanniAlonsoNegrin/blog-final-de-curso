@@ -9,9 +9,9 @@
                 @endforeach
 
                 <div class="mt-4">
-                    {{ $posts->links() }}
+                    {{ $posts->links() }} 
                 </div>
-            </div>
+            </div> 
         </div> 
     </div>
 </x-app-layout>                      

@@ -28,13 +28,13 @@ use App\Http\Controllers\PostCommentController;
 
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
-Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show'); 
 
 Route::get('category/{category}', [PostController::class, 'category'])->name('posts.category');
 
 Route::get('tag/{tag}', [PostController::class, 'tag'])->name('posts.tag');
 
-Route::get('maxviews', [PostController::class, 'maxViews'])->name('posts.maxviews');
+Route::get('maxviews', [PostController::class, 'maxViews'])->name('posts.maxviews'); 
 
 Route::get('maxcoments',[PostController::class,'maxComents'])->name('post.maxcoments');
 

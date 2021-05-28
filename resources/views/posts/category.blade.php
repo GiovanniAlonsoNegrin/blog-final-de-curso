@@ -43,7 +43,7 @@
                                 @else
                                     <img class="w-36 h-20 object-cover object-center flex-none rounded-lg" src="https://cdn.pixabay.com/photo/2015/04/20/13/17/work-731198_1280.jpg" alt="image">
                                 @endif
-                                <span class="ml-2 text-gray-600">{{ $maxviewpost->name }}</span>
+                                <span class="ml-2 text-gray-600">{{ $maxviewpost->name }}</span> 
                             </a>
                         </li> 
                     @endforeach

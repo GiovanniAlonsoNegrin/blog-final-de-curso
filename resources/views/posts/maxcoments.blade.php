@@ -7,7 +7,7 @@
                 @foreach ($posts as $post)
                     <x-card-post :post="$post" />  
                 @endforeach
-
+  
                 <div class="mt-4">
                     {{ $posts->links() }}
                 </div> 
@@ -15,4 +15,4 @@
         </div>
     </div>
 </x-app-layout>    
- 
+  

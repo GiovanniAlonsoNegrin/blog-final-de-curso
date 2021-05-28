@@ -22,10 +22,10 @@ class PostController extends Controller
         // dd($post->comments);
         // $comments = Comment::find('post_id', $post->id)  
         //                     ->get();
-        // $this->authorize('commentPublished', $comments); 
+        // $this->authorize('commentPublished', $comments);  
         // $users = User::where('id', $comments->id)  
          $post->count += 1;                 //->; 
-         $post->save(); //mediante estas dos líneas de código se suma una visita.
+         $post->save(); //mediante estas dos líneas de código se suma una visita. 
 
         $similars = Post::where('category_id', $post->category_id)
                        ->where('status', 2) 

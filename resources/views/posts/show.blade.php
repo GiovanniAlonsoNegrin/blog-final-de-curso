@@ -28,11 +28,11 @@
 
                     {!! Form::open(['route' => 'post.comment.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
-                        {!! Form::hidden('point', '') !!}
+                        {!! Form::hidden('point', '') !!}  
 
                     {!! Form::close() !!}
 
-                    <div class="text-justify">
+                    <div class="text-justify"> 
                         {!! $post->body !!}
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                                             <button type="submit" class="fas fa-trash-alt text-red-500"></button>
                                         
                                         </form>
-                                        
+                                         
                                     </div>
                                 
                                     <textarea name="message" id="message" cols="80" rows="4" class="border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full h-full', 'placeholder' => 'Tu comentario...', 'maxlength' => '300', 'rows' => '4', 'cols' => '80', 'required', 'readonly">{{ $comment->message }}</textarea>
