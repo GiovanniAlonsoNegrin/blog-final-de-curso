@@ -15,7 +15,7 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    public function show(Post $post){
+    public function show(Post $post){ 
 
         $this->authorize('published', $post);
         
@@ -31,21 +31,21 @@ class PostController extends Controller
                        ->where('status', 2) 
                        ->where('id', '!=', $post->id)
                        ->latest('id') 
-                       ->take(5)
+                       ->take(5) 
                        ->get();
-
+ 
         $maxviews = Post::orderBy('count','DESC')->where('category_id', $post->category_id)->take(5)->get(); 
+ 
 
-
-        return view('posts.show', compact('post', 'similars','maxviews'));
+        return view('posts.show', compact('post', 'similars','maxviews')); 
     } 
   
-
+ 
     public function category(Category $category){
         $categories = Category::all();
 
         $posts = Post::where('category_id', $category->id)
-                    ->where('status', 2)
+                    ->where('status', 2)  
                     ->latest('id')
                     ->paginate(6);
             
